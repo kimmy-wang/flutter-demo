@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:flutter_color/flutter_color.dart';
-import 'package:flutter_demo/common/mock/languages.dart';
+
 import 'package:flutter_demo/common/model/language_model.dart';
 import 'package:flutter_demo/common/utils/navigator_util.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:flutter_demo/common/apis/language_api.dart';
 import 'package:flutter_demo/common/utils/string_util.dart';
 
-enum OptionDialogAction {
+enum ContactsAction {
   cancel,
   discard,
   save,
@@ -17,24 +19,25 @@ const double SLIVER_ITEM_HEIGHT = 40;
 const double KEY_ITEM_WIDTH = 20;
 const double KEY_ITEM_HEIGHT = 16;
 
-class OptionDialog extends StatefulWidget {
+class Contacts extends StatefulWidget {
+  final String headerTitle;
+
+  const Contacts({Key key, this.headerTitle}) : super(key: key);
 
   @override
-  _OptionDialogState createState() => _OptionDialogState();
+  _ContactsState createState() => _ContactsState();
 }
 
-class _OptionDialogState extends State<OptionDialog>
+class _ContactsState extends State<Contacts>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   Map<String, List<Language>> languagesMap = Map();
   final ScrollController _scrollController = ScrollController();
   List<Language> languagesList = [];
-  List<Language> _languagesBySearch = [];
-  String _inputText = StringUtil.STRING_EMPTY;
   int currentKeyIndex = 0;
 
   @override
   void initState() {
-    _loadLanguages();
+    _loadFromNetwork();
     _scrollController.addListener(() {
       _onScroll(_scrollController.position.pixels);
     });
@@ -55,7 +58,7 @@ class _OptionDialogState extends State<OptionDialog>
             ),
           ),
         ),
-        title: Text("hahahah"),
+        title: Text(widget.headerTitle ?? ""),
         actions: <Widget>[
           FlatButton(
             child: Text(
@@ -63,7 +66,7 @@ class _OptionDialogState extends State<OptionDialog>
               style: TextStyle(color: Colors.black54),
             ),
             onPressed: () {
-              Navigator.pop(context, OptionDialogAction.save);
+              Navigator.pop(context, ContactsAction.save);
             },
           ),
         ],
@@ -72,12 +75,10 @@ class _OptionDialogState extends State<OptionDialog>
         children: <Widget>[
           Container(
 //            padding: EdgeInsets.only(top: 50),
-            child: _inputText == StringUtil.STRING_EMPTY
-                ? CustomScrollView(
+            child: CustomScrollView(
               controller: _scrollController,
               slivers: _buildSlivers(context),
-            )
-                : _searchList,
+            ),
           ),
           buildPositionedKeys
         ],
@@ -87,39 +88,19 @@ class _OptionDialogState extends State<OptionDialog>
 
   Widget get buildPositionedKeys {
     var height = _getSortedKeys.length * KEY_ITEM_HEIGHT;
-    return _inputText == StringUtil.STRING_EMPTY
-        ? Positioned(
-            right: 4,
-            top: (MediaQuery.of(context).size.height - height) / 2 - 36,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-              ),
-              width: KEY_ITEM_WIDTH,
-              height: height,
-              child: _getListKeys,
-            ),
-          )
-        : Container();
-  }
-
-  Widget get _searchList {
-    return _languagesBySearch.isEmpty
-        ? Container(
-            child: Center(
-              child: Text(
-                '哎呦喂, 搜索值迷路了!',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-            ),
-          )
-        : ListView(
-            children: ListTile.divideTiles(
-                    context: context,
-                    tiles: _buildListTiles(context, _languagesBySearch))
-                .toList(),
-          );
+    return Positioned(
+      right: 4,
+      top: (MediaQuery.of(context).size.height - height) / 2 - 36,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black12,
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+        ),
+        width: KEY_ITEM_WIDTH,
+        height: height,
+        child: _getListKeys,
+      ),
+    );
   }
 
   List<Widget> _buildSlivers(BuildContext context) {
@@ -180,12 +161,9 @@ class _OptionDialogState extends State<OptionDialog>
 
   Widget _buildAnimatedHeader(
       BuildContext context, String key, SliverStickyHeaderState state) {
-
     return Container(
       height: SLIVER_HEADER_HEIGHT,
-      color: (state.isPinned
-              ? Colors.blue
-              : Colors.blueGrey.withOpacity(0.5))
+      color: (state.isPinned ? Colors.blue : Colors.blueGrey.withOpacity(0.5))
           .withOpacity(1.0 - state.scrollPercentage),
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       alignment: Alignment.centerLeft,
@@ -196,8 +174,8 @@ class _OptionDialogState extends State<OptionDialog>
     );
   }
 
-  void _loadLanguages() {
-    List<Language> languages = Languages.languages;
+  void _loadLanguages(List<Language> languages) {
+//    List<Language> languages = Languages.languages;
     Map<String, List<Language>> resultMap = Map();
     languages.forEach((language) {
       String text = language.text;
@@ -292,6 +270,16 @@ class _OptionDialogState extends State<OptionDialog>
         break;
       }
     }
+  }
+
+  void _loadFromNetwork() {
+    LanguageAPi.fetch().then((data) => {
+      if(data != null && data.isNotEmpty) {
+        _loadLanguages(data)
+      }
+    }).catchError((error) => {
+      print(error)
+    });
   }
 
   @override

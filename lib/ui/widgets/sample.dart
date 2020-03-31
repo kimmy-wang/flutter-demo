@@ -12,7 +12,7 @@ class Sample extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        if (navigation != null) {navigation(context)}
+        if (navigation != null) {navigation(context, title)}
       },
       child: Container(
         height: 62,
