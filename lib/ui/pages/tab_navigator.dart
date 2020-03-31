@@ -5,16 +5,38 @@ import 'package:flutter_demo/ui/pages/category/category_page.dart';
 import 'package:flutter_demo/ui/pages/webview/webview_page.dart';
 import 'package:flutter_demo/ui/pages/settings/settings_page.dart';
 
-const TEXTS = ['示例', '分类', '网页', '设置'];
-const ICONS = [
-  Icons.grid_on,
-  Icons.format_list_numbered_rtl,
-  Icons.open_in_browser,
-  Icons.settings,
+List<Map<String, Object>> tabs = [
+  {
+    "title": "示例",
+    "icon": Icons.grid_on,
+    "widget": (title) => SamplesPage(
+          headerTitle: title,
+        )
+  },
+  {
+    "title": "分类",
+    "icon": Icons.format_list_numbered_rtl,
+    "widget": (title) => CategoryPage(
+          headerTitle: title,
+        )
+  },
+  {
+    "title": "网页",
+    "icon": Icons.open_in_browser,
+    "widget": (title) => WebviewPage(
+          headerTitle: title,
+        )
+  },
+  {
+    "title": "设置",
+    "icon": Icons.settings,
+    "widget": (title) => SettingsPage(
+          headerTitle: title,
+        )
+  }
 ];
 
 class TabNavigator extends StatefulWidget {
-
   @override
   _TabNavigatorState createState() => _TabNavigatorState();
 }
@@ -29,6 +51,13 @@ class _TabNavigatorState extends State<TabNavigator> {
     super.dispose();
   }
 
+  List<Widget> _pages() {
+    List<Widget> pages = [];
+    tabs.forEach(
+        (ele) => {pages.add((ele["widget"] as Function)(ele["title"]))});
+    return pages;
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData _theme = Theme.of(context);
@@ -36,15 +65,10 @@ class _TabNavigatorState extends State<TabNavigator> {
       body: PageView(
         controller: _controller,
         physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[
-          SamplesPage(),
-          CategoryPage(),
-          WebviewPage(),
-          SettingsPage(),
-        ],
+        children: _pages(),
       ),
       bottomNavigationBar: Opacity(
-        opacity: 0.7,
+        opacity: 1.0,
         child: BottomNavigationBar(
           selectedFontSize: 12,
           currentIndex: _currentIndex,
@@ -63,28 +87,27 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   List<BottomNavigationBarItem> _items(ThemeData theme) {
     List<BottomNavigationBarItem> items = [];
-    TEXTS.asMap().forEach((int index, String text) {
-      items.add(_item(theme, index, text));
+    tabs.asMap().forEach((index, item) {
+      items.add(_item(theme, index, item));
     });
     return items;
   }
 
-  BottomNavigationBarItem _item(ThemeData theme, int index, String text) {
+  BottomNavigationBarItem _item(
+      ThemeData theme, int index, Map<String, Object> item) {
     return BottomNavigationBarItem(
         title: Text(
-          text,
+          item["title"],
           style: TextStyle(
-            color: _currentIndex == index
-                ? theme.accentColor
-                : Colors.black38,
+            color: _currentIndex == index ? theme.accentColor : Colors.black38,
           ),
         ),
         icon: Icon(
-          ICONS[index],
+          item["icon"],
           color: Colors.black38,
         ),
         activeIcon: Icon(
-          ICONS[index],
+          item["icon"],
           color: theme.accentColor,
         ));
   }
