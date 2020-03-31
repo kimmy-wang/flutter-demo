@@ -103,8 +103,8 @@ class _SamplesPageState extends State<SamplesPage> {
             description: samples[index]["description"],
             navigation: (samples[index]["navigation"] as Function),
           ),
-          separatorBuilder: (context, index) => Divider(
-            height: 4,
+          separatorBuilder: (context, index) => Container(
+            height: 10,
           ),
         ),
       ),

@@ -17,7 +17,7 @@ class Sample extends StatelessWidget {
       child: Container(
         height: 62,
         padding: EdgeInsets.only(top: 6, bottom: 6),
-        decoration: BoxDecoration(color: Colors.black12.withOpacity(0.1)),
+        decoration: BoxDecoration(color: Colors.white),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
