@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:FlutterDemo/ui/pages/samples/samples_page.dart';
-import 'package:FlutterDemo/ui/pages/category/category_page.dart';
-import 'package:FlutterDemo/ui/pages/webview/webview_page.dart';
-import 'package:FlutterDemo/ui/pages/settings/settings_page.dart';
+import 'package:flutter_demo/ui/pages/samples/samples_page.dart';
+import 'package:flutter_demo/ui/pages/category/category_page.dart';
+import 'package:flutter_demo/ui/pages/webview/webview_page.dart';
+import 'package:flutter_demo/ui/pages/settings/settings_page.dart';
 
 const TEXTS = ['示例', '分类', '网页', '设置'];
 const ICONS = [
