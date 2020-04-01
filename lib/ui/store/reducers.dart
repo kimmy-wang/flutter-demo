@@ -5,11 +5,9 @@ import 'package:flutter_demo/ui/store/state.dart';
 // to an Increment action.
 FlutterDemoState counterReducer(FlutterDemoState state, dynamic action) {
   if (action == Actions.Increment) {
-    state.counter += 1;
-    return state;
+    return state.copyWith(counter: state.counter + 1);
   } else if (action == Actions.ChangeMode) {
-    state.darkMode = !state.darkMode;
-    return state;
+    return state.copyWith(darkMode: !state.darkMode);
   }
 
   return state;

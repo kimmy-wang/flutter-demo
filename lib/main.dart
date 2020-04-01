@@ -4,15 +4,27 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux_logging/redux_logging.dart';
+import 'package:redux_persist/redux_persist.dart';
+import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 
 import 'package:flutter_demo/ui/store/reducers.dart';
 import 'package:flutter_demo/ui/store/state.dart';
 import 'package:flutter_demo/ui/pages/tab_navigator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Create Persistor
+  final persistor = Persistor<FlutterDemoState>(
+    storage: FlutterStorage(),
+    serializer: JsonSerializer<FlutterDemoState>(FlutterDemoState.fromJson),
+  );
+
+  // Load initial state
+  final initialStateFromStorage = await persistor.load();
   final store = new Store<FlutterDemoState>(counterReducer,
-      initialState: initialState,
+      initialState: initialStateFromStorage ?? initialState,
       middleware: [
+        persistor.createMiddleware(),
         LoggingMiddleware.printer(),
         thunkMiddleware,
       ]);
