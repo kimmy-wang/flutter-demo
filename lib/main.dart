@@ -21,31 +21,17 @@ void main() async {
 
   // Load initial state
   final initialStateFromStorage = await persistor.load();
-  final store = new Store<FlutterDemoState>(counterReducer,
+  final store = Store<FlutterDemoState>(counterReducer,
       initialState: initialStateFromStorage ?? initialState,
       middleware: [
         persistor.createMiddleware(),
         LoggingMiddleware.printer(),
         thunkMiddleware,
       ]);
-  runApp(new FlutterDemoApp(
+  runApp(FlutterDemoApp(
     title: 'Flutter Demo',
     store: store,
   ));
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: TabNavigator(),
-    );
-  }
 }
 
 class FlutterDemoApp extends StatelessWidget {
@@ -56,17 +42,15 @@ class FlutterDemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new StoreProvider<FlutterDemoState>(
+    return StoreProvider<FlutterDemoState>(
       store: store,
       child: StoreConnector<FlutterDemoState, bool>(
         converter: (store) => store.state.darkMode,
-        builder: (context, darkMode) {
-          return new MaterialApp(
-            theme: darkMode ? ThemeData.dark() : ThemeData.light(),
-            title: title,
-            home: TabNavigator(),
-          );
-        },
+        builder: (context, darkMode) => MaterialApp(
+          theme: darkMode ? ThemeData.dark() : ThemeData.light(),
+          title: title,
+          home: TabNavigator(),
+        ),
       ),
     );
   }

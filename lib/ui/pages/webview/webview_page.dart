@@ -45,10 +45,13 @@ class _WebviewPageState extends State<WebviewPage> {
           return () => store.dispatch(Actions.Actions.ChangeMode);
         },
         builder: (context, callback) {
-          return new FloatingActionButton(
-            onPressed: callback,
-            tooltip: 'ChangeMode',
-            child: new Icon(Icons.autorenew),
+          return StoreConnector<FlutterDemoState, bool>(
+            converter: (store) => store.state.darkMode,
+            builder: (context, darkMode) => FloatingActionButton(
+              onPressed: callback,
+              tooltip: 'ChangeMode',
+              child: Icon(darkMode ? Icons.brightness_4 : Icons.brightness_7),
+            ),
           );
         },
       ),
