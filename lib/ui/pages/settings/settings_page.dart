@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:flutter_demo/ui/store/actions.dart' as Actions;
-import 'package:flutter_demo/ui/store/state.dart';
+import 'package:flutter_demo/common/model/app_state.dart';
+import 'package:flutter_demo/ui/store/actions/actions.dart';
 
 class SettingsPage extends StatefulWidget {
   final String headerTitle;
@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Text(
               'You have pushed the button this many times:',
             ),
-            StoreConnector<FlutterDemoState, String>(
+            StoreConnector<AppState, String>(
               converter: (store) => store.state.counter.toString(),
               builder: (context, count) {
                 return Text(
@@ -41,9 +41,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
-      floatingActionButton: new StoreConnector<FlutterDemoState, VoidCallback>(
+      floatingActionButton: new StoreConnector<AppState, VoidCallback>(
         converter: (store) {
-          return () => store.dispatch(Actions.Actions.Increment);
+          return () => store.dispatch(IncreaseAction());
         },
         builder: (context, callback) {
           return new FloatingActionButton(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:flutter_demo/ui/store/actions.dart' as Actions;
-import 'package:flutter_demo/ui/store/state.dart';
+import 'package:flutter_demo/common/model/app_state.dart';
+import 'package:flutter_demo/ui/store/actions/actions.dart';
 
 class WebviewPage extends StatefulWidget {
   final String headerTitle;
@@ -28,7 +28,7 @@ class _WebviewPageState extends State<WebviewPage> {
             Text(
               'You have pushed the button this many times:',
             ),
-            StoreConnector<FlutterDemoState, String>(
+            StoreConnector<AppState, String>(
               converter: (store) => store.state.counter.toString(),
               builder: (context, count) {
                 return Text(
@@ -40,12 +40,12 @@ class _WebviewPageState extends State<WebviewPage> {
           ],
         ),
       ),
-      floatingActionButton: new StoreConnector<FlutterDemoState, VoidCallback>(
+      floatingActionButton: new StoreConnector<AppState, VoidCallback>(
         converter: (store) {
-          return () => store.dispatch(Actions.Actions.ChangeMode);
+          return () => store.dispatch(DarkModeAction());
         },
         builder: (context, callback) {
-          return StoreConnector<FlutterDemoState, bool>(
+          return StoreConnector<AppState, bool>(
             converter: (store) => store.state.darkMode,
             builder: (context, darkMode) => FloatingActionButton(
               onPressed: callback,

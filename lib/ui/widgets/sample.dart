@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:flutter_demo/ui/store/state.dart';
+import 'package:flutter_demo/common/model/app_state.dart';
 
 class Sample extends StatelessWidget {
   final String title;
@@ -18,7 +18,7 @@ class Sample extends StatelessWidget {
       onTap: () => {
         if (navigation != null) {navigation(context, title)}
       },
-      child: StoreConnector<FlutterDemoState, bool>(
+      child: StoreConnector<AppState, bool>(
         converter: (store) => store.state.darkMode,
         builder: (context, darkMode) => Container(
           height: 62,

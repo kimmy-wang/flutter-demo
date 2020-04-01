@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/ui/store/state.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 
+import 'package:flutter_demo/common/model/app_state.dart';
 import 'package:flutter_demo/common/mock/bottom_tabs.dart';
 
 class TabNavigator extends StatefulWidget {
@@ -64,7 +65,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   BottomNavigationBarItem _item(ThemeData theme, int index,
       Map<String, Object> item) =>
       BottomNavigationBarItem(
-        title: StoreConnector<FlutterDemoState, bool>(
+        title: StoreConnector<AppState, bool>(
           converter: (store) => store.state.darkMode,
           builder: (context, darkMode) =>
               Text(
@@ -78,7 +79,7 @@ class _TabNavigatorState extends State<TabNavigator> {
                 ),
               ),
         ),
-        icon: StoreConnector<FlutterDemoState, bool>(
+        icon: StoreConnector<AppState, bool>(
           converter: (store) => store.state.darkMode,
           builder: (context, darkMode) =>
               Icon(
