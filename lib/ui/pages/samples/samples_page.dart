@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_demo/common/mock/samples.dart';
-import 'package:flutter_demo/ui/widgets/sample.dart';
+import 'package:flutter_demo/ui/widgets/samples_item.dart';
 
 class SamplesPage extends StatefulWidget {
   final String headerTitle;
@@ -23,7 +23,7 @@ class _SamplesPageState extends State<SamplesPage> {
         margin: EdgeInsets.all(6),
         child: ListView.separated(
           itemCount: samples.length,
-          itemBuilder: (context, index) => Sample(
+          itemBuilder: (context, index) => SamplesItem(
             title: samples[index]["title"],
             description: samples[index]["description"],
             navigation: (samples[index]["navigation"] as Function),

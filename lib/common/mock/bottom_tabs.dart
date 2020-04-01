@@ -26,7 +26,7 @@ List<Map<String, Object>> tabs = [
     "title": "网页",
     "icon": Icons.open_in_browser,
     "widget": (title) =>
-        WebviewPage(
+        WebViewPage(
           headerTitle: title,
         )
   },
