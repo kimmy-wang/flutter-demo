@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 
-// One simple action: Increment
 class IncreaseAction {
   final int count;
 
@@ -23,9 +23,9 @@ class DecreaseAction {
 }
 
 class DarkModeAction {
-  final bool darkMode;
+  final ThemeMode darkMode;
 
-  DarkModeAction({this.darkMode = false});
+  DarkModeAction({this.darkMode = ThemeMode.system});
 
   @override
   String toString() {

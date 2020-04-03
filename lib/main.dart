@@ -34,23 +34,32 @@ void main() async {
   ));
 }
 
-class FlutterDemoApp extends StatelessWidget {
+class FlutterDemoApp extends StatefulWidget {
   final Store<AppState> store;
   final String title;
 
   FlutterDemoApp({Key key, this.store, this.title}) : super(key: key);
 
   @override
+  _FlutterDemoAppState createState() => _FlutterDemoAppState();
+}
+
+class _FlutterDemoAppState extends State<FlutterDemoApp> {
+  @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
-      store: store,
-      child: StoreConnector<AppState, bool>(
+      store: widget.store,
+      child: StoreConnector<AppState, ThemeMode>(
         converter: (store) => store.state.darkMode,
-        builder: (context, darkMode) => MaterialApp(
-          theme: darkMode ? ThemeData.dark() : ThemeData.light(),
-          title: title,
-          home: TabNavigator(),
-        ),
+        builder: (context, darkMode) {
+          return MaterialApp(
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(),
+            themeMode: darkMode,
+            title: widget.title,
+            home: TabNavigator(),
+          );
+        },
       ),
     );
   }

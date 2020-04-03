@@ -13,18 +13,22 @@ class SamplesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Provider.of<ThemeModel>(context);
+    bool isDarkMode =
+        MediaQuery.platformBrightnessOf(context) == Brightness.dark;
     return GestureDetector(
       onTap: () => {
         if (navigation != null) {navigation(context, title)}
       },
-      child: StoreConnector<AppState, bool>(
+      child: StoreConnector<AppState, ThemeMode>(
         converter: (store) => store.state.darkMode,
         builder: (context, darkMode) => Container(
           height: 62,
           padding: EdgeInsets.only(top: 6, bottom: 6),
-          decoration:
-              BoxDecoration(color: darkMode ? Colors.black87 : Colors.white),
+          decoration: BoxDecoration(
+              color: (darkMode == ThemeMode.dark ||
+                      (darkMode == ThemeMode.system && isDarkMode))
+                  ? Colors.black87
+                  : Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -37,7 +41,10 @@ class SamplesItem extends StatelessWidget {
                       title,
                       style: TextStyle(
                         fontSize: 18,
-                        color: darkMode ? Colors.white70 : Colors.black87,
+                        color: (darkMode == ThemeMode.dark ||
+                                (darkMode == ThemeMode.system && isDarkMode))
+                            ? Colors.white70
+                            : Colors.black87,
                       ),
                     ),
                   ),
@@ -49,7 +56,10 @@ class SamplesItem extends StatelessWidget {
                       description,
                       style: TextStyle(
                         fontSize: 14,
-                        color: darkMode ? Colors.white30 : Colors.black45,
+                        color: (darkMode == ThemeMode.dark ||
+                                (darkMode == ThemeMode.system && isDarkMode))
+                            ? Colors.white30
+                            : Colors.black45,
                       ),
                     ),
                   ),
@@ -60,7 +70,10 @@ class SamplesItem extends StatelessWidget {
                 child: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
-                  color: darkMode ? Colors.white30 : Colors.black38,
+                  color: (darkMode == ThemeMode.dark ||
+                          (darkMode == ThemeMode.system && isDarkMode))
+                      ? Colors.white30
+                      : Colors.black38,
                 ),
               )
             ],

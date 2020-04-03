@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'app_state.g.dart';
@@ -5,11 +6,11 @@ part 'app_state.g.dart';
 @JsonSerializable()
 class AppState {
   final int counter;
-  final bool darkMode;
+  final ThemeMode darkMode;
 
   AppState({
     this.counter = 0,
-    this.darkMode = false,
+    this.darkMode = ThemeMode.system,
   });
 
   AppState copyWith({

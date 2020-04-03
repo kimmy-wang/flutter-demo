@@ -23,12 +23,14 @@ class _TabNavigatorState extends State<TabNavigator> {
   List<Widget> _pages() {
     List<Widget> pages = [];
     tabs.forEach(
-            (ele) => {pages.add((ele["widget"] as Function)(ele["title"]))});
+        (ele) => {pages.add((ele["widget"] as Function)(ele["title"]))});
     return pages;
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        MediaQuery.platformBrightnessOf(context) == Brightness.dark;
     final ThemeData _theme = Theme.of(context);
     return Scaffold(
       body: PageView(
@@ -48,47 +50,50 @@ class _TabNavigatorState extends State<TabNavigator> {
             });
           },
           type: BottomNavigationBarType.fixed,
-          items: _items(_theme),
+          items: _items(_theme, isDarkMode),
         ),
       ),
     );
   }
 
-  List<BottomNavigationBarItem> _items(ThemeData theme) {
+  List<BottomNavigationBarItem> _items(ThemeData theme, bool isDarkMode) {
     List<BottomNavigationBarItem> items = [];
     tabs.asMap().forEach((index, item) {
-      items.add(_item(theme, index, item));
+      items.add(_item(theme, isDarkMode, index, item));
     });
     return items;
   }
 
-  BottomNavigationBarItem _item(ThemeData theme, int index,
-      Map<String, Object> item) =>
+  BottomNavigationBarItem _item(ThemeData theme, bool isDarkMode, int index,
+          Map<String, Object> item) =>
       BottomNavigationBarItem(
-        title: StoreConnector<AppState, bool>(
+        title: StoreConnector<AppState, ThemeMode>(
           converter: (store) => store.state.darkMode,
-          builder: (context, darkMode) =>
-              Text(
-                item["title"],
-                style: TextStyle(
-                  color:
-                  _currentIndex == index ? theme.accentColor : (darkMode
-                      ? Colors
-                      .white38
+          builder: (context, darkMode) => Text(
+            item["title"],
+            style: TextStyle(
+              color: _currentIndex == index
+                  ? theme.accentColor
+                  : ((darkMode == ThemeMode.dark ||
+                          (darkMode == ThemeMode.system && isDarkMode))
+                      ? Colors.white38
                       : Colors.black38),
-                ),
-              ),
+            ),
+          ),
         ),
-        icon: StoreConnector<AppState, bool>(
+        icon: StoreConnector<AppState, ThemeMode>(
           converter: (store) => store.state.darkMode,
-          builder: (context, darkMode) =>
-              Icon(
-                item["icon"],
-                color: darkMode ? Colors.white38 : Colors.black38,
-              ),
+          builder: (context, darkMode) => Icon(
+            item["icon"],
+            color: (darkMode == ThemeMode.dark ||
+                    (darkMode == ThemeMode.system && isDarkMode))
+                ? Colors.white38
+                : Colors.black38,
+          ),
         ),
         activeIcon: Icon(
           item["icon"],
           color: theme.accentColor,
-        ),);
+        ),
+      );
 }

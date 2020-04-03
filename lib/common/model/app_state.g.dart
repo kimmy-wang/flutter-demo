@@ -7,14 +7,51 @@ part of 'app_state.dart';
 // **************************************************************************
 
 AppState _$AppStateFromJson(Map<String, dynamic> json) {
-  return AppState().copyWith(
+  return AppState(
     counter: json['counter'] as int,
-    darkMode: json['darkMode'] as bool,
+    darkMode: _$enumDecodeNullable(_$ThemeModeEnumMap, json['darkMode']),
   );
 }
 
-Map<String, dynamic> _$AppStateToJson(AppState instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
       'counter': instance.counter,
-      'darkMode': instance.darkMode,
+      'darkMode': _$ThemeModeEnumMap[instance.darkMode],
     };
+
+T _$enumDecode<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError('A value must be provided. Supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+
+  final value = enumValues.entries
+      .singleWhere((e) => e.value == source, orElse: () => null)
+      ?.key;
+
+  if (value == null && unknownValue == null) {
+    throw ArgumentError('`$source` is not one of the supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+  return value ?? unknownValue;
+}
+
+T _$enumDecodeNullable<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$ThemeModeEnumMap = {
+  ThemeMode.system: 'system',
+  ThemeMode.light: 'light',
+  ThemeMode.dark: 'dark',
+};
