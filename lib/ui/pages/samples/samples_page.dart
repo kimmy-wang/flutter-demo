@@ -15,6 +15,8 @@ class SamplesPage extends StatefulWidget {
 class _SamplesPageState extends State<SamplesPage> {
   @override
   Widget build(BuildContext context) {
+    List<Map<String, Object>> filteredSamples =
+        samples.where((item) => !(item['hidden'] ?? false)).toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.headerTitle ?? "Samples"),
@@ -22,11 +24,11 @@ class _SamplesPageState extends State<SamplesPage> {
       body: Container(
         margin: EdgeInsets.all(6),
         child: ListView.separated(
-          itemCount: samples.length,
+          itemCount: filteredSamples.length,
           itemBuilder: (context, index) => SamplesItem(
-            title: samples[index]["title"],
-            description: samples[index]["description"],
-            navigation: (samples[index]["navigation"] as Function),
+            title: filteredSamples[index]["title"],
+            description: filteredSamples[index]["description"],
+            navigation: (filteredSamples[index]["navigation"] as Function),
           ),
           separatorBuilder: (context, index) => Container(
             height: 10,

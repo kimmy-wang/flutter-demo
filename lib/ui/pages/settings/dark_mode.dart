@@ -25,6 +25,7 @@ class _DarkModeState extends State<DarkMode> {
       body: StoreConnector<AppState, ThemeMode>(
         converter: (store) => store.state.darkMode,
         builder: (context, darkMode) => Container(
+          margin: EdgeInsets.only(left: 6, right: 6),
           child: ListView.separated(
             itemBuilder: (BuildContext context, int index) =>
                 RadioListTile<ThemeMode>(
