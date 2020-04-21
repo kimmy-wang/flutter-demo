@@ -28,7 +28,7 @@ class _TopTabState extends State<TopTab> {
             indicator: MD2Indicator(
               indicatorHeight: 3,
               indicatorColor: Colors.orangeAccent,
-              indicatorSize: MD2IndicatorSize.normal,
+              indicatorSize: MD2IndicatorSize.full,
             ),
             tabs: <Widget>[
               Tab(

@@ -82,7 +82,7 @@ List<Map<String, Object>> samples = [
     "description": "滑块视图示例",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
-      Swiper(
+      FSwiper(
         headerTitle: title,
       ),
     )
