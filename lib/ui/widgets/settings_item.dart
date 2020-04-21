@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 
+import 'package:flutter_demo/common/utils/dark_mode_util.dart';
 import 'package:flutter_demo/common/model/app_state.dart';
 
 class SettingsItem extends StatelessWidget {
@@ -13,8 +15,6 @@ class SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.platformBrightnessOf(context) == Brightness.dark;
     return GestureDetector(
       onTap: () => {
         if (navigation != null) {navigation(context, title)}
@@ -25,8 +25,7 @@ class SettingsItem extends StatelessWidget {
           height: 42,
           padding: EdgeInsets.only(top: 6, bottom: 6),
           decoration: BoxDecoration(
-              color: (darkMode == ThemeMode.dark ||
-                      (darkMode == ThemeMode.system && isDarkMode))
+              color: DarkModeUtil.isDarkMode(context, darkMode)
                   ? Colors.black87
                   : Colors.white),
           child: Row(
@@ -38,8 +37,9 @@ class SettingsItem extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontSize: 16,
-                    color: (darkMode == ThemeMode.dark ||
-                        (darkMode == ThemeMode.system && isDarkMode)) ? Colors.white70 : Colors.black87,
+                    color: DarkModeUtil.isDarkMode(context, darkMode)
+                        ? Colors.white70
+                        : Colors.black87,
                   ),
                 ),
               ),
@@ -48,8 +48,7 @@ class SettingsItem extends StatelessWidget {
                 child: Icon(
                   Icons.arrow_forward_ios,
                   size: 20,
-                  color: (darkMode == ThemeMode.dark ||
-                          (darkMode == ThemeMode.system && isDarkMode))
+                  color: DarkModeUtil.isDarkMode(context, darkMode)
                       ? Colors.white30
                       : Colors.black38,
                 ),

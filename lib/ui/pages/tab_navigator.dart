@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 
+import 'package:flutter_demo/common/utils/dark_mode_util.dart';
 import 'package:flutter_demo/common/model/app_state.dart';
 import 'package:flutter_demo/common/mock/bottom_tabs.dart';
 
@@ -29,8 +30,6 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        MediaQuery.platformBrightnessOf(context) == Brightness.dark;
     final ThemeData _theme = Theme.of(context);
     return Scaffold(
       body: PageView(
@@ -50,21 +49,21 @@ class _TabNavigatorState extends State<TabNavigator> {
             });
           },
           type: BottomNavigationBarType.fixed,
-          items: _items(_theme, isDarkMode),
+          items: _items(_theme),
         ),
       ),
     );
   }
 
-  List<BottomNavigationBarItem> _items(ThemeData theme, bool isDarkMode) {
+  List<BottomNavigationBarItem> _items(ThemeData theme) {
     List<BottomNavigationBarItem> items = [];
     tabs.asMap().forEach((index, item) {
-      items.add(_item(theme, isDarkMode, index, item));
+      items.add(_item(theme, index, item));
     });
     return items;
   }
 
-  BottomNavigationBarItem _item(ThemeData theme, bool isDarkMode, int index,
+  BottomNavigationBarItem _item(ThemeData theme, int index,
           Map<String, Object> item) =>
       BottomNavigationBarItem(
         title: StoreConnector<AppState, ThemeMode>(
@@ -74,10 +73,9 @@ class _TabNavigatorState extends State<TabNavigator> {
             style: TextStyle(
               color: _currentIndex == index
                   ? theme.accentColor
-                  : ((darkMode == ThemeMode.dark ||
-                          (darkMode == ThemeMode.system && isDarkMode))
+                  : DarkModeUtil.isDarkMode(context, darkMode)
                       ? Colors.white38
-                      : Colors.black38),
+                      : Colors.black38,
             ),
           ),
         ),
@@ -85,8 +83,7 @@ class _TabNavigatorState extends State<TabNavigator> {
           converter: (store) => store.state.darkMode,
           builder: (context, darkMode) => Icon(
             item["icon"],
-            color: (darkMode == ThemeMode.dark ||
-                    (darkMode == ThemeMode.system && isDarkMode))
+            color: DarkModeUtil.isDarkMode(context, darkMode)
                 ? Colors.white38
                 : Colors.black38,
           ),
