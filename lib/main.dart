@@ -9,14 +9,15 @@ import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 
 import 'package:flutter_demo/common/model/app_state.dart';
+import 'package:flutter_demo/common/config/flutter_demo_config.dart';
 import 'package:flutter_demo/ui/pages/tab_navigator.dart';
 import 'package:flutter_demo/ui/store/reducers/app_state_reducer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AmapService.init(
-    iosKey: 'c3b60c1f305f5b18aab83056c6971709',
-    androidKey: 'b515edaa8a1230aa4d2aa9447a7f66d7',
+    iosKey: FlutterDemoConfig.AMAP_CLIENT_KEY_IOS,
+    androidKey: FlutterDemoConfig.AMAP_CLIENT_KEY_ANDROID,
   );
   // Create Persistor
   final persistor = Persistor<AppState>(
