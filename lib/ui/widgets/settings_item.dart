@@ -7,11 +7,15 @@ import 'package:flutter_demo/common/model/app_state.dart';
 
 class SettingsItem extends StatelessWidget {
   final String title;
-  final String icon;
+  final IconData icon;
   final Function navigation;
 
-  const SettingsItem({Key key, this.title, this.icon, this.navigation})
-      : super(key: key);
+  const SettingsItem({
+    Key key,
+    this.title,
+    this.icon = Icons.arrow_forward_ios,
+    this.navigation,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class SettingsItem extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(right: 4),
                 child: Icon(
-                  Icons.arrow_forward_ios,
+                  icon,
                   size: 20,
                   color: DarkModeUtil.isDarkMode(context, darkMode)
                       ? Colors.white30

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_demo/common/mock/bottom_tabs.dart';
+
 class IncreaseAction {
   final int count;
 
@@ -30,5 +32,16 @@ class DarkModeAction {
   @override
   String toString() {
     return 'DarkModeAction{darkMode: $darkMode}';
+  }
+}
+
+class BottomTabAction {
+  final List<Map<String, dynamic>> bottomTabs;
+
+  BottomTabAction({this.bottomTabs = tabs});
+
+  @override
+  String toString() {
+    return 'BottomTabAction{bottomTabs: $bottomTabs}';
   }
 }

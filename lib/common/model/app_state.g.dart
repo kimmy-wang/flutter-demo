@@ -10,12 +10,16 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
   return AppState(
     counter: json['counter'] as int,
     darkMode: _$enumDecodeNullable(_$ThemeModeEnumMap, json['darkMode']),
+    bottomTabs: (json['bottomTabs'] as List)
+        ?.map((e) => e as Map<String, dynamic>)
+        ?.toList(),
   );
 }
 
 Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
       'counter': instance.counter,
       'darkMode': _$ThemeModeEnumMap[instance.darkMode],
+      'bottomTabs': instance.bottomTabs,
     };
 
 T _$enumDecode<T>(
