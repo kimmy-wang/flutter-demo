@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:demo_widgets/demo_widgets.dart';
 import 'package:amap_all_fluttify/amap_all_fluttify.dart';
 import 'package:decorated_flutter/decorated_flutter.dart';
 import 'package:flutter_demo/common/utils/navigator_util.dart';
