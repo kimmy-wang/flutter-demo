@@ -30,13 +30,10 @@ class _FSwiperState extends State<FSwiper> {
       onTap: () {
         NavigatorUtil.push(context, widget);
       },
-      isThreeLine: true,
-      dense: false,
-      leading: null,
       title: new Text(title),
       subtitle: new Text(subtitle),
       trailing: new Icon(
-        Icons.arrow_right,
+        Icons.arrow_forward_ios,
         color: Colors.blueAccent,
       ),
     );
