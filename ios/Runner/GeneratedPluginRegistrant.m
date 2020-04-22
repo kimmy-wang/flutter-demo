@@ -4,6 +4,42 @@
 
 #import "GeneratedPluginRegistrant.h"
 
+#if __has_include(<amap_all_fluttify/AmapAllFluttifyPlugin.h>)
+#import <amap_all_fluttify/AmapAllFluttifyPlugin.h>
+#else
+@import amap_all_fluttify;
+#endif
+
+#if __has_include(<amap_core_fluttify/AmapCoreFluttifyPlugin.h>)
+#import <amap_core_fluttify/AmapCoreFluttifyPlugin.h>
+#else
+@import amap_core_fluttify;
+#endif
+
+#if __has_include(<amap_location_fluttify/AmapLocationFluttifyPlugin.h>)
+#import <amap_location_fluttify/AmapLocationFluttifyPlugin.h>
+#else
+@import amap_location_fluttify;
+#endif
+
+#if __has_include(<amap_map_fluttify/AmapMapFluttifyPlugin.h>)
+#import <amap_map_fluttify/AmapMapFluttifyPlugin.h>
+#else
+@import amap_map_fluttify;
+#endif
+
+#if __has_include(<amap_search_fluttify/AmapSearchFluttifyPlugin.h>)
+#import <amap_search_fluttify/AmapSearchFluttifyPlugin.h>
+#else
+@import amap_search_fluttify;
+#endif
+
+#if __has_include(<foundation_fluttify/FoundationFluttifyPlugin.h>)
+#import <foundation_fluttify/FoundationFluttifyPlugin.h>
+#else
+@import foundation_fluttify;
+#endif
+
 #if __has_include(<image_picker/FLTImagePickerPlugin.h>)
 #import <image_picker/FLTImagePickerPlugin.h>
 #else
@@ -40,6 +76,12 @@
 @import shared_preferences;
 #endif
 
+#if __has_include(<url_launcher/FLTURLLauncherPlugin.h>)
+#import <url_launcher/FLTURLLauncherPlugin.h>
+#else
+@import url_launcher;
+#endif
+
 #if __has_include(<video_player/FLTVideoPlayerPlugin.h>)
 #import <video_player/FLTVideoPlayerPlugin.h>
 #else
@@ -61,12 +103,19 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
+  [AmapAllFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapAllFluttifyPlugin"]];
+  [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
+  [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
+  [AmapMapFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapMapFluttifyPlugin"]];
+  [AmapSearchFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapSearchFluttifyPlugin"]];
+  [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTLocalAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTLocalAuthPlugin"]];
   [NfcInFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"NfcInFlutterPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
   [QrcodePlugin registerWithRegistrar:[registry registrarForPlugin:@"QrcodePlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
+  [FLTURLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTURLLauncherPlugin"]];
   [FLTVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTVideoPlayerPlugin"]];
   [WakelockPlugin registerWithRegistrar:[registry registrarForPlugin:@"WakelockPlugin"]];
   [FLTWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTWebViewFlutterPlugin"]];

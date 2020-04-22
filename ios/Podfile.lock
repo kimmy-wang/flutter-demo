@@ -1,6 +1,37 @@
 PODS:
+  - AMap3DMap (6.9.0):
+    - AMapFoundation (~> 1.5)
+  - amap_all_fluttify (0.0.1):
+    - Flutter
+  - amap_core_fluttify (0.0.1):
+    - AMapFoundation (~> 1.6)
+    - Flutter
+    - foundation_fluttify
+  - amap_location_fluttify (0.0.1):
+    - amap_core_fluttify
+    - AMapLocation (~> 2.6.3)
+    - Flutter
+    - foundation_fluttify
+  - amap_map_fluttify (0.0.1):
+    - AMap3DMap (~> 6.9.0)
+    - amap_core_fluttify
+    - Flutter
+    - foundation_fluttify
+    - url_launcher
+  - amap_search_fluttify (0.0.1):
+    - amap_core_fluttify
+    - AMapSearch (~> 6.9.0)
+    - Flutter
+    - foundation_fluttify
+  - AMapFoundation (1.6.3)
+  - AMapLocation (2.6.5):
+    - AMapFoundation (~> 1.6.3)
+  - AMapSearch (6.9.0):
+    - AMapFoundation (~> 1.4)
   - Flutter (1.0.0)
   - flutter_plugin_android_lifecycle (0.0.1):
+    - Flutter
+  - foundation_fluttify (0.0.1):
     - Flutter
   - image_picker (0.0.1):
     - Flutter
@@ -20,6 +51,12 @@ PODS:
     - Flutter
   - shared_preferences_web (0.0.1):
     - Flutter
+  - url_launcher (0.0.1):
+    - Flutter
+  - url_launcher_macos (0.0.1):
+    - Flutter
+  - url_launcher_web (0.0.1):
+    - Flutter
   - video_player (0.0.1):
     - Flutter
   - video_player_web (0.0.1):
@@ -30,8 +67,14 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - amap_all_fluttify (from `.symlinks/plugins/amap_all_fluttify/ios`)
+  - amap_core_fluttify (from `.symlinks/plugins/amap_core_fluttify/ios`)
+  - amap_location_fluttify (from `.symlinks/plugins/amap_location_fluttify/ios`)
+  - amap_map_fluttify (from `.symlinks/plugins/amap_map_fluttify/ios`)
+  - amap_search_fluttify (from `.symlinks/plugins/amap_search_fluttify/ios`)
   - Flutter (from `Flutter`)
   - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
+  - foundation_fluttify (from `.symlinks/plugins/foundation_fluttify/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
   - nfc_in_flutter (from `.symlinks/plugins/nfc_in_flutter/ios`)
@@ -41,16 +84,38 @@ DEPENDENCIES:
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
   - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - url_launcher_macos (from `.symlinks/plugins/url_launcher_macos/ios`)
+  - url_launcher_web (from `.symlinks/plugins/url_launcher_web/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
   - video_player_web (from `.symlinks/plugins/video_player_web/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
+SPEC REPOS:
+  trunk:
+    - AMap3DMap
+    - AMapFoundation
+    - AMapLocation
+    - AMapSearch
+
 EXTERNAL SOURCES:
+  amap_all_fluttify:
+    :path: ".symlinks/plugins/amap_all_fluttify/ios"
+  amap_core_fluttify:
+    :path: ".symlinks/plugins/amap_core_fluttify/ios"
+  amap_location_fluttify:
+    :path: ".symlinks/plugins/amap_location_fluttify/ios"
+  amap_map_fluttify:
+    :path: ".symlinks/plugins/amap_map_fluttify/ios"
+  amap_search_fluttify:
+    :path: ".symlinks/plugins/amap_search_fluttify/ios"
   Flutter:
     :path: Flutter
   flutter_plugin_android_lifecycle:
     :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
+  foundation_fluttify:
+    :path: ".symlinks/plugins/foundation_fluttify/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   local_auth:
@@ -69,6 +134,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_macos/ios"
   shared_preferences_web:
     :path: ".symlinks/plugins/shared_preferences_web/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
+  url_launcher_macos:
+    :path: ".symlinks/plugins/url_launcher_macos/ios"
+  url_launcher_web:
+    :path: ".symlinks/plugins/url_launcher_web/ios"
   video_player:
     :path: ".symlinks/plugins/video_player/ios"
   video_player_web:
@@ -79,8 +150,18 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
+  AMap3DMap: c80b264f08f179d9b0949b84c65fc1a51dec9d6f
+  amap_all_fluttify: 40f1276b77c4f3377c216ffb6f4f556d9a195113
+  amap_core_fluttify: 3ecd5214273625acda9f810ef85bfc961c79537c
+  amap_location_fluttify: 487dc181dc7e5a33d50b662cf5a3f148fde42261
+  amap_map_fluttify: 25e2e712b0834a66379a9abaee4d72635e9733a1
+  amap_search_fluttify: 7e076e7ce98df37865c0bc051e862ac6995b8de2
+  AMapFoundation: 9ed923193b357ebb30a073e9fe255d3c24054d5a
+  AMapLocation: c566d448285cd502c1e313063d9e2460bd4d7100
+  AMapSearch: af02822537e55b85a4752e9df5c19e4b9da82031
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
+  foundation_fluttify: 3038fcc96aabb59c77f595964954c118af535d57
   image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
   local_auth: 2571c49920ae469f46d5557435fad8fa473a5e88
   nfc_in_flutter: c656fbfb1ec5b9d021da87b0c87629d62fd5264d
@@ -90,6 +171,9 @@ SPEC CHECKSUMS:
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
   shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
+  url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
   video_player: 69c5f029fac4ffe4fc8a85ea7f7b793709661549
   video_player_web: da8cadb8274ed4f8dbee8d7171b420dedd437ce7
   wakelock: 0d4a70faf8950410735e3f61fb15d517c8a6efc4
