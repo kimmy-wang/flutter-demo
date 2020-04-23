@@ -120,6 +120,7 @@ List<Map<String, Object>> samples = [
   {
     "title": "通知推送示例",
     "description": "通知推送示例",
+    "hidden": true,
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       NotificationPage(

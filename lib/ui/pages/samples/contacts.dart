@@ -48,28 +48,7 @@ class _ContactsState extends State<Contacts>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => NavigatorUtil.pop(context),
-          child: Padding(
-            padding: EdgeInsets.all(6),
-            child: Icon(
-              Icons.close,
-              size: 20,
-            ),
-          ),
-        ),
-        title: Text(widget.headerTitle ?? ""),
-        actions: <Widget>[
-          FlatButton(
-            child: Text(
-              '完成',
-              style: TextStyle(color: Colors.black54),
-            ),
-            onPressed: () {
-              Navigator.pop(context, ContactsAction.save);
-            },
-          ),
-        ],
+        title: Text(widget.headerTitle ?? "")
       ),
       body: Stack(
         children: <Widget>[
