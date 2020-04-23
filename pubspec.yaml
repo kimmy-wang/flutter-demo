@@ -46,6 +46,7 @@ dependencies:
   decorated_flutter: ^0.12.0+1
   reorderables: ^0.3.2
   flutter_native_splash: ^0.1.9
+  intro_slider: ^2.2.9
 
 dev_dependencies:
   flutter_test:

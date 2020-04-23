@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/ui/pages/app_intro_screen.dart';
 
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -10,7 +11,6 @@ import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 
 import 'package:flutter_demo/common/model/app_state.dart';
 import 'package:flutter_demo/common/config/flutter_demo_config.dart';
-import 'package:flutter_demo/ui/pages/tab_navigator.dart';
 import 'package:flutter_demo/ui/store/reducers/app_state_reducer.dart';
 
 Future<void> main() async {
@@ -63,7 +63,8 @@ class _FlutterDemoAppState extends State<FlutterDemoApp> {
             darkTheme: ThemeData.dark(),
             themeMode: darkMode,
             title: widget.title,
-            home: TabNavigator(),
+            home: AppIntroScreen(),
+            debugShowCheckedModeBanner: false,
           );
         },
       ),
