@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/common/mock/bottom_tabs.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:flutter_demo/common/utils/dark_mode_util.dart';
 import 'package:flutter_demo/common/model/app_state.dart';
-import 'package:flutter_demo/ui/pages/category/category_page.dart';
-import 'package:flutter_demo/ui/pages/samples/samples_page.dart';
-import 'package:flutter_demo/ui/pages/settings/settings_page.dart';
-import 'package:flutter_demo/ui/pages/webview/webview_page.dart';
+import 'package:flutter_demo/common/flutter_demo_manager.dart';
+import 'package:flutter_demo/common/mock/bottom_tabs.dart';
 
 class TabNavigator extends StatefulWidget {
   @override
@@ -18,6 +15,7 @@ class TabNavigator extends StatefulWidget {
 class _TabNavigatorState extends State<TabNavigator> {
   final PageController _controller = PageController(initialPage: 0);
   int _currentIndex = 0;
+  final GlobalKey _key = GlobalKey();
 
   @override
   void dispose() {
@@ -30,8 +28,8 @@ class _TabNavigatorState extends State<TabNavigator> {
 //    bottomTabs.forEach(
 //        (ele) => {pages.add((ele["widget"] as Function)(ele["title"]))});
     bottomTabs.forEach((Map<String, dynamic> item) {
-      Map<String, dynamic> element = tabsWithWidget
-          .firstWhere((Map<String, dynamic> ele) => ele['title'] == item['title']);
+      Map<String, dynamic> element = tabsWithWidget.firstWhere(
+          (Map<String, dynamic> ele) => ele['title'] == item['title']);
       pages.add((element["widget"] as Function)(element["title"]));
     });
     return pages;
@@ -52,6 +50,7 @@ class _TabNavigatorState extends State<TabNavigator> {
           bottomNavigationBar: Opacity(
             opacity: 1.0,
             child: BottomNavigationBar(
+              key: _key,
               selectedFontSize: 12,
               currentIndex: _currentIndex,
               onTap: (index) {
@@ -59,6 +58,9 @@ class _TabNavigatorState extends State<TabNavigator> {
                 setState(() {
                   _currentIndex = index;
                 });
+                FlutterDemoManager()
+                  ..kBottomNavigationBarHeight =
+                      _key.currentContext.size.height;
               },
               type: BottomNavigationBarType.fixed,
               items: _items(_theme, bottomTabs),

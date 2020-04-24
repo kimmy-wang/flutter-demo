@@ -1,9 +1,5 @@
 class FlutterDemoManager {
-  String username;
-  String password;
-  int authorizationId;
-  String token;
-  String loginType;
+  double kBottomNavigationBarHeight;
 
   // 单例公开访问点
   factory FlutterDemoManager() => _flutterDemoManager();
