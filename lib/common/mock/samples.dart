@@ -131,6 +131,7 @@ List<Map<String, Object>> samples = [
   {
     "title": "分享示例",
     "description": "分享示例",
+    "hidden": true,
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       Share(
@@ -141,6 +142,7 @@ List<Map<String, Object>> samples = [
   {
     "title": "动画示例",
     "description": "动画示例",
+    "hidden": true,
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       AnimationPage(
