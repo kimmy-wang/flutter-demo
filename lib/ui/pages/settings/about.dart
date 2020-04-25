@@ -1,324 +1,117 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'dart:async';
+import 'dart:developer' show Timeline, Flow;
+import 'dart:io' show Platform;
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/scheduler.dart';
 
-enum AppBarBehavior { normal, pinned, floating, snapping }
+import 'package:flutter/material.dart' hide Flow;
+import 'package:flutter/gestures.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 
-class About extends StatefulWidget {
-  final String headerTitle;
 
-  const About({Key key, this.headerTitle}) : super(key: key);
-  @override
-  AboutState createState() => AboutState();
+import 'package:url_launcher/url_launcher.dart';
+
+class _LinkTextSpan extends TextSpan {
+
+  // Beware!
+  //
+  // This class is only safe because the TapGestureRecognizer is not
+  // given a deadline and therefore never allocates any resources.
+  //
+  // In any other situation -- setting a deadline, using any of the less trivial
+  // recognizers, etc -- you would have to manage the gesture recognizer's
+  // lifetime and call dispose() when the TextSpan was no longer being rendered.
+  //
+  // Since TextSpan itself is @immutable, this means that you would have to
+  // manage the recognizer from outside the TextSpan, e.g. in the State of a
+  // stateful widget that then hands the recognizer to the TextSpan.
+
+  _LinkTextSpan({ TextStyle style, String url, String text }) : super(
+      style: style,
+      text: text ?? url,
+      recognizer: TapGestureRecognizer()
+        ..onTap = () {
+          launch(url, forceSafariVC: false);
+        }
+  );
 }
 
-class AboutState extends State<About> {
-  static final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final double _appBarHeight = 256.0;
+void showDemoAboutDialog(BuildContext context) {
+  final ThemeData themeData = Theme.of(context);
+  final TextStyle aboutTextStyle = themeData.textTheme.body2;
+  final TextStyle linkStyle = themeData.textTheme.body2.copyWith(
+      color: themeData.accentColor);
 
-  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
+  LicenseRegistry.reset();
+  LicenseRegistry.addLicense(() async* {
+    yield LicenseEntryWithLineBreaks(<String>[''], '''
+      MIT License
 
-  @override
-  Widget build(BuildContext context) {
-    double horizontal = MediaQuery.of(context).viewPadding.top;
-    return Scaffold(
-      key: _scaffoldKey,
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: _appBarHeight + horizontal,
-            pinned: _appBarBehavior == AppBarBehavior.pinned,
-            floating: _appBarBehavior == AppBarBehavior.floating || _appBarBehavior == AppBarBehavior.snapping,
-            snap: _appBarBehavior == AppBarBehavior.snapping,
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.create),
-                tooltip: 'Edit',
-                onPressed: () {
-                  _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                    content: Text("Editing isn't supported in this screen."),
-                  ));
-                },
-              ),
-              PopupMenuButton<AppBarBehavior>(
-                onSelected: (AppBarBehavior value) {
-                  setState(() {
-                    _appBarBehavior = value;
-                  });
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuItem<AppBarBehavior>>[
-                  const PopupMenuItem<AppBarBehavior>(
-                    value: AppBarBehavior.normal,
-                    child: Text('App bar scrolls away'),
-                  ),
-                  const PopupMenuItem<AppBarBehavior>(
-                    value: AppBarBehavior.pinned,
-                    child: Text('App bar stays put'),
-                  ),
-                  const PopupMenuItem<AppBarBehavior>(
-                    value: AppBarBehavior.floating,
-                    child: Text('App bar floats'),
-                  ),
-                  const PopupMenuItem<AppBarBehavior>(
-                    value: AppBarBehavior.snapping,
-                    child: Text('App bar snaps'),
-                  ),
-                ],
-              ),
-            ],
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(widget.headerTitle),
-              background: Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  Image.network(
-                    'https://cdn.upcwangying.com/logo/avatar.JPG',
-                    fit: BoxFit.cover,
-                    height: _appBarHeight,
-                  ),
-                  // This gradient ensures that the toolbar icons are distinct
-                  // against the background image.
-                  const DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment(0.0, -1.0),
-                        end: Alignment(0.0, -0.4),
-                        colors: <Color>[Color(0x60000000), Color(0x00000000)],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(<Widget>[
-              AnnotatedRegion<SystemUiOverlayStyle>(
-                value: SystemUiOverlayStyle.dark,
-                child: _ContactCategory(
-                  icon: FontAwesomeIcons.sitemap,
-                  children: <Widget>[
-                    _ContactItem(
-                      icon: FontAwesomeIcons.home,
-                      tooltip: 'HomePage',
-                      onPressed: () {
-                        _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                          content: Text('https://upcwangying.com.'),
-                        ));
-                      },
-                      lines: const <String>[
-                        'https://upcwangying.com',
-                        'HomePage',
-                      ],
-                    ),
-                    _ContactItem(
-                      icon: FontAwesomeIcons.github,
-                      tooltip: 'GitHub',
-                      onPressed: () {
-                        _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                          content: Text('https://github.com/upcwangying.'),
-                        ));
-                      },
-                      lines: const <String>[
-                        'https://github.com/upcwangying',
-                        'GitHub',
-                      ],
-                    ),
-                    _ContactItem(
-                      icon: FontAwesomeIcons.git,
-                      tooltip: 'Gitee',
-                      onPressed: () {
-                        _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                          content: Text('https://gitee.com/upcwangying.'),
-                        ));
-                      },
-                      lines: const <String>[
-                        'https://gitee.com/upcwangying',
-                        'Gitee',
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              _ContactCategory(
-                icon: Icons.location_on,
-                children: <Widget>[
-                  _ContactItem(
-                    icon: Icons.map,
-                    tooltip: 'Address',
-                    onPressed: () {
-                      _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                        content: Text('Qingdao city.'),
-                      ));
-                    },
-                    lines: const <String>[
-                      'Qingdao city',
-                      'Shandong province',
-                      'China',
-                      'Address',
-                    ],
-                  ),
-                  _ContactItem(
-                    icon: Icons.map,
-                    tooltip: 'Address',
-                    onPressed: () {
-                      _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                        content: Text('Qingdao city.'),
-                      ));
-                    },
-                    lines: const <String>[
-                      'Qingdao city',
-                      'Shandong province',
-                      'China',
-                      'Address',
-                    ],
-                  ),
-                  _ContactItem(
-                    icon: Icons.map,
-                    tooltip: 'Address',
-                    onPressed: () {
-                      _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                        content: Text('Qingdao city.'),
-                      ));
-                    },
-                    lines: const <String>[
-                      'Qingdao city',
-                      'Shandong province',
-                      'China',
-                      'Address',
-                    ],
-                  ),
-                  _ContactItem(
-                    icon: Icons.map,
-                    tooltip: 'Address',
-                    onPressed: () {
-                      _scaffoldKey.currentState.showSnackBar(const SnackBar(
-                        content: Text('Qingdao city.'),
-                      ));
-                    },
-                    lines: const <String>[
-                      'Qingdao city',
-                      'Shandong province',
-                      'China',
-                      'Address',
-                    ],
-                  ),
-                ],
-              ),
-              _ContactCategory(
-                icon: Icons.today,
-                children: <Widget>[
-                  _ContactItem(
-                    lines: const <String>[
-                      'Birthday',
-                      'January 9th, 1989',
-                    ],
-                  ),
-                  _ContactItem(
-                    lines: const <String>[
-                      'Wedding anniversary',
-                      'June 21st, 2014',
-                    ],
-                  ),
-                  _ContactItem(
-                    lines: const <String>[
-                      'Birthday',
-                      'January 9th, 1989',
-                    ],
-                  ),
-                  _ContactItem(
-                    lines: const <String>[
-                      'Wedding anniversary',
-                      'June 21st, 2014',
-                    ],
-                  ),
-                ],
-              ),
-            ]),
-          ),
-        ],
-      ),
+      Copyright (c) 2020 upcwangying.com
+      
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+      of this software and associated documentation files (the "Software"), to deal
+      in the Software without restriction, including without limitation the rights
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+      copies of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions:
+      
+      The above copyright notice and this permission notice shall be included in all
+      copies or substantial portions of the Software.
+      
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+      SOFTWARE.
+    '''
     );
-  }
-}
+  });
 
-class _ContactCategory extends StatelessWidget {
-  const _ContactCategory({ Key key, this.icon, this.children }) : super(key: key);
-
-  final IconData icon;
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: themeData.dividerColor))
-      ),
-      child: DefaultTextStyle(
-        style: Theme.of(context).textTheme.subhead,
-        child: SafeArea(
-          top: false,
-          bottom: false,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                width: 72.0,
-                child: Icon(icon, color: themeData.primaryColor),
+  showAboutDialog(
+    context: context,
+    applicationVersion: 'Apri 2020',
+    applicationIcon: const ImageIcon(NetworkImage('https://apps.upcwangying.com/flutter/demo/logo512.png'), size: 40,),
+//    applicationIcon: const FlutterLogo(),
+    applicationLegalese: '© 2020 Ying Wang',
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(top: 24.0),
+        child: RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                style: aboutTextStyle,
+                text: 'Flutter Demo is an open-source project to help developers '
+                    'build high-performance, high-fidelity, mobile apps for '
+                    '${defaultTargetPlatform == TargetPlatform.iOS
+                    ? 'multiple platforms' : 'iOS and Android'} '
+                    'from a single codebase. Learn more about Flutter at ',
               ),
-              Expanded(child: Column(children: children)),
+              _LinkTextSpan(
+                style: linkStyle,
+                url: 'https://apps.upcwangying.com/flutter/demo',
+              ),
+              TextSpan(
+                style: aboutTextStyle,
+                text: '.\n\nTo see the source code for this app, please visit the ',
+              ),
+              _LinkTextSpan(
+                style: linkStyle,
+                url: 'https://github.com/upcwangying/flutter-demo',
+                text: 'github repo',
+              ),
+              TextSpan(
+                style: aboutTextStyle,
+                text: '.',
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _ContactItem extends StatelessWidget {
-  const _ContactItem({ Key key, this.icon, this.lines, this.tooltip, this.onPressed })
-      : assert(lines.length > 1),
-        super(key: key);
-
-  final IconData icon;
-  final List<String> lines;
-  final String tooltip;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return MergeSemantics(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ...lines.sublist(0, lines.length - 1).map<Widget>((String line) => Text(line)),
-                  Text(lines.last, style: themeData.textTheme.caption),
-                ],
-              ),
-            ),
-            if (icon != null)
-              SizedBox(
-                width: 72.0,
-                child: IconButton(
-                  icon: Icon(icon),
-                  color: themeData.primaryColor,
-                  onPressed: onPressed,
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
+    ],
+  );
 }

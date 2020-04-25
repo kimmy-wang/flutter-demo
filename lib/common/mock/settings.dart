@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_demo/common/utils/navigator_util.dart';
+import 'package:flutter_demo/ui/pages/settings/author.dart';
 import 'package:flutter_demo/ui/pages/settings/about.dart';
+import 'package:flutter_demo/ui/pages/settings/feedback.dart';
 import 'package:flutter_demo/ui/pages/settings/dark_mode.dart';
 import 'package:flutter_demo/ui/pages/settings/top_tab.dart';
 
@@ -27,13 +29,23 @@ List<Map<String, Object>> settings = [
     )
   },
   {
-    "title": "关于",
+    "title": "作者",
     "icon": "",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
-      About(
+      Author(
         headerTitle: title,
       ),
     )
+  },
+  {
+    "title": "关于",
+    "icon": "",
+    "navigation": (BuildContext context, String title) => showDemoAboutDialog(context)
+  },
+  {
+    "title": "反馈",
+    "icon": "",
+    "navigation": (BuildContext context, String title) => feedback()
   },
 ];
