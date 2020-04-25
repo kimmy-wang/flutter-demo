@@ -1,6 +1,6 @@
 class FlutterDemoConfig {
 
-  static const AMAP_CLIENT_KEY_IOS = 'c3b60c1f305f5b18aab83056c6971709';
+  static const AMAP_CLIENT_KEY_IOS = 'a44f04aa4f4cd9d7ea32904f3d7adbde';
 
-  static const AMAP_CLIENT_KEY_ANDROID = 'b515edaa8a1230aa4d2aa9447a7f66d7';
+  static const AMAP_CLIENT_KEY_ANDROID = 'ec4f4706e1213b0904bcda5f54e44660';
 }
