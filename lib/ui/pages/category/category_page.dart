@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter_demo/common/flutter_demo_manager.dart';
 import 'package:flutter_demo/common/mock/product_category.dart';
+import 'package:flutter_demo/common/model/app_state.dart';
+import 'package:flutter_demo/common/utils/dark_mode_util.dart';
 import 'package:flutter_demo/common/utils/math_util.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -32,14 +37,8 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double top = MediaQuery
-        .of(context)
-        .padding
-        .top;
+    double height = MediaQuery.of(context).size.height;
+    double top = MediaQuery.of(context).padding.top;
     double _kBottomNavigationBarHeight =
         FlutterDemoManager().kBottomNavigationBarHeight;
     return Scaffold(
@@ -50,34 +49,43 @@ class _CategoryPageState extends State<CategoryPage> {
         height: height - top - kToolbarHeight - _kBottomNavigationBarHeight,
         child: Row(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
+            StoreConnector<AppState, ThemeMode>(
+              converter: (store) => store.state.darkMode,
+              builder: (context, darkMode) => Container(
+                decoration: BoxDecoration(
                   border: Border(
-                      right: BorderSide(color: Colors.black12.withAlpha(7)))),
-              width: 88,
-              height:
-              height - top - kToolbarHeight - _kBottomNavigationBarHeight,
-              child: ListView.builder(
-                controller: _scrollController,
-                itemBuilder: (BuildContext context, int index) =>
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                      child: _ProductCategoryItem(
-                        label: productCategories[index]['label'],
-                        highlight: index == _currentIndex,
-                      ),
+                    right: BorderSide(
+                      color: DarkModeUtil.isDarkMode(context, darkMode)
+                          ? Colors.white12.withAlpha(7)
+                          : Colors.black12.withAlpha(7),
                     ),
-                itemCount: productCategories.length,
+                  ),
+                ),
+                width: 88,
+                height:
+                    height - top - kToolbarHeight - _kBottomNavigationBarHeight,
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemBuilder: (BuildContext context, int index) =>
+                      GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                    child: _ProductCategoryItem(
+                      label: productCategories[index]['label'],
+                      highlight: index == _currentIndex,
+                    ),
+                  ),
+                  itemCount: productCategories.length,
+                ),
               ),
             ),
             Expanded(
               child: Container(
                 height:
-                height - top - kToolbarHeight - _kBottomNavigationBarHeight,
+                    height - top - kToolbarHeight - _kBottomNavigationBarHeight,
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, int index) =>
                       _ProductCategoryCard(),
@@ -108,19 +116,26 @@ class _ProductCategoryItem extends StatelessWidget {
         height: 18,
         decoration: highlight
             ? BoxDecoration(
-          border: Border(
-            left: BorderSide(color: Colors.orangeAccent, width: 4),
-          ),
-        )
+                border: Border(
+                  left: BorderSide(color: Colors.orangeAccent, width: 4),
+                ),
+              )
             : BoxDecoration(),
         padding:
-        highlight ? EdgeInsets.only(right: 4) : EdgeInsets.only(left: 0),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              color: highlight ? Colors.orangeAccent : Colors.black,
-              fontSize: 14,
+            highlight ? EdgeInsets.only(right: 4) : EdgeInsets.only(left: 0),
+        child: StoreConnector<AppState, ThemeMode>(
+          converter: (store) => store.state.darkMode,
+          builder: (context, darkMode) => Center(
+            child: Text(
+              label,
+              style: TextStyle(
+                color: highlight
+                    ? Colors.orangeAccent
+                    : DarkModeUtil.isDarkMode(context, darkMode)
+                        ? Colors.white
+                        : Colors.black,
+                fontSize: 14,
+              ),
             ),
           ),
         ),
@@ -133,11 +148,9 @@ class _ProductCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle _textStyle = TextStyle(color: Colors.black12);
+    double imageSize = (MediaQuery.of(context).size.width - 88) * 0.25;
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width - 88,
+      width: MediaQuery.of(context).size.width - 88,
       child: Column(
         children: <Widget>[
           Container(
@@ -145,12 +158,20 @@ class _ProductCategoryCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('——', style: _textStyle,),
+                Text(
+                  '——',
+                  style: _textStyle,
+                ),
                 Container(
                   padding: EdgeInsets.only(left: 20, right: 20),
-                  child: Text('数字电话',),
+                  child: Text(
+                    '数字电话',
+                  ),
                 ),
-                Text('——', style: _textStyle,),
+                Text(
+                  '——',
+                  style: _textStyle,
+                ),
               ],
             ),
           ),
@@ -163,7 +184,9 @@ class _ProductCategoryCard extends StatelessWidget {
               spacing: 10,
               runSpacing: 10,
               children: List.generate(
-                MathUtil.randomWithMax(9), (int index) => _widget(),),
+                MathUtil.randomWithMax(9),
+                (int index) => _widget(imageSize),
+              ),
             ),
           )
         ],
@@ -171,15 +194,25 @@ class _ProductCategoryCard extends StatelessWidget {
     );
   }
 
-  Widget _widget() {
+  Widget _widget(double imageSize) {
     return Container(
       padding: EdgeInsets.only(left: 8, top: 12, right: 8),
       child: Column(
         children: <Widget>[
           Container(
-            width: 70,
-            height: 70,
-            child: Image.network('https://cdn.upcwangying.com/logo/avatar.JPG'),
+            width: imageSize,
+            height: imageSize,
+            child: CachedNetworkImage(
+              imageUrl: 'https://cdn.upcwangying.com/logo/avatar.JPG',
+              placeholder: (context, url) => Center(
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
           Container(
             padding: EdgeInsets.only(top: 12),
