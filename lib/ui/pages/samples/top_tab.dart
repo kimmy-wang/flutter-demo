@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 
 class TopTab extends StatefulWidget {
@@ -48,17 +49,61 @@ class _TopTabState extends State<TopTab> {
         ),
         body: TabBarView(children: [
           Container(
-            child: Text("TopTab1"),
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+              placeholder: (context, url) => Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
           Container(
-            child: Text("TopTab2"),
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://apps.upcwangying.com/flutter/demo/assets/bg0.jpeg',
+              placeholder: (context, url) => Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
           Container(
-            child: Text("TopTab3"),
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://apps.upcwangying.com/flutter/demo/assets/bg1.jpeg',
+              placeholder: (context, url) => Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
           Container(
-            child: Text("TopTab4"),
-          )
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://apps.upcwangying.com/flutter/demo/assets/bg2.jpeg',
+              placeholder: (context, url) => Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          ),
         ]),
       ),
     );

@@ -47,6 +47,7 @@ dependencies:
   reorderables: ^0.3.2
   flutter_native_splash: ^0.1.9
   intro_slider: ^2.2.9
+  cached_network_image: ^2.1.0+1
 
 dev_dependencies:
   flutter_test:
