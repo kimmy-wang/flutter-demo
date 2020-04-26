@@ -13,7 +13,7 @@ const String kNavigationExamplePage = '''
 The navigation delegate is set to block navigation to the youtube website.
 </p>
 <ul>
-<ul><a href="https://apps.upcwangying.com/rn/demo">https://apps.upcwangying.com/rn/demo</a></ul>
+<ul><a href="https://upcwangying.com">https://upcwangying.com</a></ul>
 <ul><a href="https://apps.upcwangying.com/flutter/demo">https://apps.upcwangying.com/flutter/demo</a></ul>
 </ul>
 </body>
@@ -46,7 +46,7 @@ class _WebViewPageState extends State<WebViewPage> {
       ),
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: 'https://apps.upcwangying.com/flutter/demo',
+          initialUrl: 'https://upcwangying.com',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
@@ -57,7 +57,7 @@ class _WebViewPageState extends State<WebViewPage> {
             _toasterJavascriptChannel(context),
           ].toSet(),
           navigationDelegate: (NavigationRequest request) {
-            if (request.url.startsWith('https://apps.upcwangying.com/rn/demo')) {
+            if (request.url.startsWith('https://apps.upcwangying.com/flutter/demo')) {
               print('blocking navigation to $request}');
               return NavigationDecision.prevent;
             }
