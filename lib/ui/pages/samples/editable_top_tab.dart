@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import 'package:flutter_demo/common/utils/navigator_util.dart';
+import 'package:flutter_demo/ui/pages/samples/editable_top_tab_dialog.dart';
 import 'package:flutter_demo/ui/widgets/app_bar.dart';
 
 class EditableTopTab extends StatefulWidget {
@@ -37,34 +39,56 @@ class _EditableTopTabState extends State<EditableTopTab>
         children: <Widget>[
           FAppBar(
             title: widget.headerTitle,
-            bottom: TabBar(
-              controller: _tabController,
-              labelStyle: TextStyle(fontWeight: FontWeight.w700),
-              indicatorSize: TabBarIndicatorSize.label,
-              labelColor: Colors.orangeAccent,
-              unselectedLabelColor: Colors.white,
-              isScrollable: true,
-              indicator: MD2Indicator(
-                indicatorHeight: 3,
-                indicatorColor: Colors.orangeAccent,
-                indicatorSize: MD2IndicatorSize.full,
-              ),
-              tabs: <Widget>[
-                Tab(
-                  text: "Home",
+            bottom: Stack(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(right: 40),
+                  child: TabBar(
+                    controller: _tabController,
+                    labelStyle: TextStyle(fontWeight: FontWeight.w700),
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelColor: Colors.orangeAccent,
+                    unselectedLabelColor: Colors.white,
+                    isScrollable: true,
+                    indicator: MD2Indicator(
+                      indicatorHeight: 3,
+                      indicatorColor: Colors.orangeAccent,
+                      indicatorSize: MD2IndicatorSize.full,
+                    ),
+                    tabs: <Widget>[
+                      Tab(
+                        text: "Home",
+                      ),
+                      Tab(
+                        text: "Personal",
+                      ),
+                      Tab(
+                        text: "personalization",
+                      ),
+                      Tab(
+                        text: "Security",
+                      ),
+                      Tab(
+                        text: "Beauty",
+                      )
+                    ],
+                  ),
                 ),
-                Tab(
-                  text: "Personal",
+                Positioned(
+                  child: GestureDetector(
+                    onTap: () => NavigatorUtil.push(context, EditableTopTabDialog()),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.list,
+                        size: 28,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  right: 6,
+                  top: 10,
                 ),
-                Tab(
-                  text: "personalization",
-                ),
-                Tab(
-                  text: "Security",
-                ),
-                Tab(
-                  text: "Beauty",
-                )
               ],
             ),
           ),
@@ -75,7 +99,8 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                    'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+                        'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+                    fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
                         height: 40,
@@ -89,7 +114,8 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                    'https://apps.upcwangying.com/flutter/demo/assets/bg0.jpeg',
+                        'https://apps.upcwangying.com/flutter/demo/assets/bg0.jpeg',
+                    fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
                         height: 40,
@@ -103,7 +129,8 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                    'https://apps.upcwangying.com/flutter/demo/assets/bg1.jpeg',
+                        'https://apps.upcwangying.com/flutter/demo/assets/bg1.jpeg',
+                    fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
                         height: 40,
@@ -117,7 +144,8 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                    'https://apps.upcwangying.com/flutter/demo/assets/bg2.jpeg',
+                        'https://apps.upcwangying.com/flutter/demo/assets/bg2.jpeg',
+                    fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
                         height: 40,
@@ -131,7 +159,8 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                    'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+                        'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+                    fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
                         height: 40,
