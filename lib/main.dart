@@ -35,7 +35,7 @@ Future<void> main() async {
         thunkMiddleware,
       ]);
   runApp(FlutterDemoApp(
-    title: 'Flutter Demo',
+    title: 'Flutter示例',
     store: store,
   ));
 }
