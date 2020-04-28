@@ -52,6 +52,7 @@ class _TopTabState extends State<TopTab> {
             child: CachedNetworkImage(
               imageUrl:
                   'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+              fit: BoxFit.fitWidth,
               placeholder: (context, url) => Center(
                 child: Container(
                   height: 40,
@@ -66,6 +67,7 @@ class _TopTabState extends State<TopTab> {
             child: CachedNetworkImage(
               imageUrl:
                   'https://apps.upcwangying.com/flutter/demo/assets/bg0.jpeg',
+              fit: BoxFit.fitWidth,
               placeholder: (context, url) => Center(
                 child: Container(
                   height: 40,
@@ -80,6 +82,7 @@ class _TopTabState extends State<TopTab> {
             child: CachedNetworkImage(
               imageUrl:
                   'https://apps.upcwangying.com/flutter/demo/assets/bg1.jpeg',
+              fit: BoxFit.fitWidth,
               placeholder: (context, url) => Center(
                 child: Container(
                   height: 40,
@@ -94,6 +97,7 @@ class _TopTabState extends State<TopTab> {
             child: CachedNetworkImage(
               imageUrl:
                   'https://apps.upcwangying.com/flutter/demo/assets/bg2.jpeg',
+              fit: BoxFit.fitWidth,
               placeholder: (context, url) => Center(
                 child: Container(
                   height: 40,
