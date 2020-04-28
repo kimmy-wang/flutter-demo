@@ -3,10 +3,10 @@ import 'package:flutter_demo/ui/pages/category/category_page.dart';
 import 'package:flutter_demo/ui/pages/webview/webview_page.dart';
 import 'package:flutter_demo/ui/pages/settings/settings_page.dart';
 
-const String samplesTitle = '示例';
-const String categoriesTitle = '分类';
-const String webViewTitle = '网页';
-const String settingsTitle = '设置';
+const String samplesTitle = 'tabSamplesTitle';
+const String categoriesTitle = 'tabCategoriesTitle';
+const String webViewTitle = 'tabWebViewTitle';
+const String settingsTitle = 'tabSettingsTitle';
 
 const List<Map<String, dynamic>> tabs = [
   {

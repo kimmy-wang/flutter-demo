@@ -1,9 +1,0 @@
-{
-  "@@last_modified": "2020-04-27T20:02:17.588301",
-  "title": "Flutter Sample",
-  "@title": {
-    "description": "Title for the Demo application",
-    "type": "text",
-    "placeholders": {}
-  }
-}

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:reorderables/reorderables.dart';
 
+import 'package:flutter_demo/l10n/flutter_demo_localizations.dart';
 import 'package:flutter_demo/common/model/app_state.dart';
 import 'package:flutter_demo/ui/store/actions/actions.dart';
 import 'package:flutter_demo/ui/widgets/settings_item.dart';
@@ -35,7 +36,7 @@ class _TopTabState extends State<TopTab> {
                     key: ValueKey(bottomTabs[index]['title']),
                     padding: EdgeInsets.fromLTRB(8, 6, 8, 6),
                     child: SettingsItem(
-                      title: bottomTabs[index]['title'],
+                      title: _getTitle(bottomTabs[index]['title']),
                       icon: Icons.format_line_spacing,
                     ),
                   ),
@@ -59,5 +60,19 @@ class _TopTabState extends State<TopTab> {
         ),
       ),
     );
+  }
+
+  String _getTitle(String title) {
+    FlutterDemoLocalizations _localizations = FlutterDemoLocalizations.of(context);
+    switch(title) {
+      case 'tabSamplesTitle':
+        return _localizations.tabSamplesTitle;
+      case 'tabCategoriesTitle':
+        return _localizations.tabCategoriesTitle;
+      case 'tabWebViewTitle':
+        return _localizations.tabWebViewTitle;
+      case 'tabSettingsTitle':
+        return _localizations.tabSettingsTitle;
+    }
   }
 }
