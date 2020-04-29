@@ -34,6 +34,12 @@
 @import amap_search_fluttify;
 #endif
 
+#if __has_include(<flutter_lottie/FlutterLottiePlugin.h>)
+#import <flutter_lottie/FlutterLottiePlugin.h>
+#else
+@import flutter_lottie;
+#endif
+
 #if __has_include(<foundation_fluttify/FoundationFluttifyPlugin.h>)
 #import <foundation_fluttify/FoundationFluttifyPlugin.h>
 #else
@@ -114,6 +120,7 @@
   [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
   [AmapMapFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapMapFluttifyPlugin"]];
   [AmapSearchFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapSearchFluttifyPlugin"]];
+  [FlutterLottiePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterLottiePlugin"]];
   [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTLocalAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTLocalAuthPlugin"]];
