@@ -21,6 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-
+    "tabCategoriesTitle" : MessageLookupByLibrary.simpleMessage("Categories"),
+    "tabSamplesTitle" : MessageLookupByLibrary.simpleMessage("Samples"),
+    "tabSettingsTitle" : MessageLookupByLibrary.simpleMessage("Settings"),
+    "tabWebViewTitle" : MessageLookupByLibrary.simpleMessage("WebView"),
+    "title" : MessageLookupByLibrary.simpleMessage("Flutter Sample")
   };
 }

@@ -5,13 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:flutter_demo/l10n/messages_all.dart';
 
 // 1. 在 app 的根目录，使用 lib/main.dart 生成 l10n/intl_messages.arb：
-// flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/main.dart
+// flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/l10n/flutter_demo_localizations.dart
 //
 // 2. 在 app 的根目录，生成每个 intl_<locale>.arb 文件对应的 intl_messages_<locale>.dart 文件，
 // 以及 intl_messages_all.dart 文件，它引入了所有的信息文件
-// flutter pub run intl_translation:generate_from_arb \
-//   --output-dir=lib/l10n --no-use-deferred-loading \
-//   lib/main.dart lib/l10n/intl_*.arb
+// flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/flutter_demo_localizations.dart lib/l10n/intl_*.arb
 class FlutterDemoLocalizations {
   FlutterDemoLocalizations(Locale locale)
       : _localeName = Intl.canonicalizedLocale(locale.toString());
