@@ -13,6 +13,7 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
     bottomTabs: (json['bottomTabs'] as List)
         ?.map((e) => e as Map<String, dynamic>)
         ?.toList(),
+    localeName: json['localeName'] as String,
   );
 }
 
@@ -20,6 +21,7 @@ Map<String, dynamic> _$AppStateToJson(AppState instance) => <String, dynamic>{
       'counter': instance.counter,
       'darkMode': _$ThemeModeEnumMap[instance.darkMode],
       'bottomTabs': instance.bottomTabs,
+      'localeName': instance.localeName,
     };
 
 T _$enumDecode<T>(

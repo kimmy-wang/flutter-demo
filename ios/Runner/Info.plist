@@ -4,7 +4,6 @@
 <dict>
 	<key>CFBundleLocalizations</key>
 	<array>
-		<string>zh_CN</string>
 		<string>en</string>
 		<string>zh</string>
 	</array>

@@ -45,3 +45,14 @@ class BottomTabAction {
     return 'BottomTabAction{bottomTabs: $bottomTabs}';
   }
 }
+
+class L10nAction {
+  final String localeName;
+
+  L10nAction({this.localeName = ''});
+
+  @override
+  String toString() {
+    return 'L10nAction{localeName: $localeName}';
+  }
+}

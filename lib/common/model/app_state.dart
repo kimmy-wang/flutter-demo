@@ -11,22 +11,26 @@ class AppState {
   final int counter;
   final ThemeMode darkMode;
   final List<Map<String, dynamic>> bottomTabs;
+  final String localeName;
 
   AppState({
     this.counter = 0,
     this.darkMode = ThemeMode.system,
     this.bottomTabs = tabs,
+    this.localeName = '',
   });
 
   AppState copyWith({
     int counter,
     bool darkMode,
     List<Map<String, dynamic>> bottomTabs,
+    String localeName,
   }) =>
       AppState(
         counter: counter ?? this.counter,
         darkMode: darkMode ?? this.darkMode,
         bottomTabs: bottomTabs ?? this.bottomTabs,
+        localeName: localeName ?? this.localeName,
       );
 
   static AppState fromJson(dynamic json) => json == null

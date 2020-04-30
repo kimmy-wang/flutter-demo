@@ -5,6 +5,7 @@ import 'package:flutter_demo/ui/pages/settings/author.dart';
 import 'package:flutter_demo/ui/pages/settings/about.dart';
 import 'package:flutter_demo/ui/pages/settings/feedback.dart';
 import 'package:flutter_demo/ui/pages/settings/dark_mode.dart';
+import 'package:flutter_demo/ui/pages/settings/l10n.dart';
 import 'package:flutter_demo/ui/pages/settings/top_tab.dart';
 
 List<Map<String, Object>> settings = [
@@ -24,6 +25,16 @@ List<Map<String, Object>> settings = [
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       DarkMode(
+        headerTitle: title,
+      ),
+    )
+  },
+  {
+    "title": "语言环境",
+    "icon": "",
+    "navigation": (BuildContext context, String title) => NavigatorUtil.push(
+      context,
+      FL10n(
         headerTitle: title,
       ),
     )

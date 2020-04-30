@@ -58,8 +58,9 @@ class _FlutterDemoAppState extends State<FlutterDemoApp> {
       store: widget.store,
       child: StoreConnector<AppState, ThemeMode>(
         converter: (store) => store.state.darkMode,
-        builder: (context, darkMode) {
-          return MaterialApp(
+        builder: (context, darkMode) => StoreConnector<AppState, String>(
+          converter: (store) => store.state.localeName,
+          builder: (context, localeName) => MaterialApp(
             localizationsDelegates: [
               ...FlutterDemoLocalizations.localizationsDelegates,
               LocaleNamesLocalizationsDelegate()
@@ -68,12 +69,13 @@ class _FlutterDemoAppState extends State<FlutterDemoApp> {
             theme: ThemeData.light(),
             darkTheme: ThemeData.dark(),
             themeMode: darkMode,
+            locale: localeName.isEmpty ? null : Locale(localeName),
             onGenerateTitle: (BuildContext context) =>
-            FlutterDemoLocalizations.of(context).title,
+                FlutterDemoLocalizations.of(context).title,
             home: AppIntroScreen(),
             debugShowCheckedModeBanner: false,
-          );
-        },
+          ),
+        ),
       ),
     );
   }

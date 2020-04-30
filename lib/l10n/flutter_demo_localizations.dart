@@ -40,7 +40,6 @@ class FlutterDemoLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('zh'),
-    Locale('zh_CN'),
   ];
 
   String get title {
@@ -94,7 +93,7 @@ class _FlutterDemoLocalizationsDelegate
   const _FlutterDemoLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'zh', 'zh_CN'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => ['en', 'zh'].contains(locale.languageCode);
 
   @override
   Future<FlutterDemoLocalizations> load(Locale locale) =>
