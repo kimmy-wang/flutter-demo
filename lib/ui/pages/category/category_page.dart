@@ -149,10 +149,35 @@ class _ProductCategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     TextStyle _textStyle = TextStyle(color: Colors.black12);
     double imageSize = (MediaQuery.of(context).size.width - 88) * 0.25;
+    int randomNum = MathUtil.randomWithMax(9);
+    List<Widget> widgets = List.generate(
+      randomNum,
+      (int index) => _widget(imageSize),
+    );
+    if (randomNum < 3) {
+      widgets.addAll(List.generate(
+        ((randomNum / 3).ceil()) * 3 - randomNum,
+        (int index) => Container(
+          margin: EdgeInsets.only(top: 12, left: 8, right: 8),
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: imageSize,
+                height: imageSize,
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 12),
+                child: Text(''),
+              )
+            ],
+          ),
+        ),
+      ));
+    }
+
     return Container(
-      width: MediaQuery.of(context).size.width - 88,
-      child: Column(
-        children: <Widget>[
+        width: MediaQuery.of(context).size.width - 88,
+        child: Column(children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 20, bottom: 16),
             child: Row(
@@ -176,27 +201,19 @@ class _ProductCategoryCard extends StatelessWidget {
             ),
           ),
           Container(
-//            width: MediaQuery
-//                .of(context)
-//                .size
-//                .width - 88,
+            alignment: Alignment.center,
             child: Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: List.generate(
-                MathUtil.randomWithMax(9),
-                (int index) => _widget(imageSize),
-              ),
+              children: widgets,
             ),
           )
-        ],
-      ),
-    );
+        ]));
   }
 
   Widget _widget(double imageSize) {
     return Container(
-      padding: EdgeInsets.only(left: 8, top: 12, right: 8),
+      margin: EdgeInsets.only(top: 12, left: 8, right: 8),
       child: Column(
         children: <Widget>[
           Container(
