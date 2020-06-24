@@ -32,6 +32,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>iosamap</string>
+		<string>itms-beta</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

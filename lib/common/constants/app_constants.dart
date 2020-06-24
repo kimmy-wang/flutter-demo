@@ -1,7 +1,7 @@
 class AppConstants {
   static const int TIME_OUT = 5 * 1000;
 
-  static const String API_PREFIX = "https://api.kjxbyz.com/v1/";
+  static const String API_PREFIX = "https://apps.upcwangying.com/flutter/demo/";
   static const Map<String, dynamic> HEADERS = {
     'Content-Type': 'application/x-www-form-urlencoded'
   };
