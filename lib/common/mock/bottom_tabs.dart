@@ -1,5 +1,5 @@
+import 'package:flutter_demo/ui/pages/category/categories_page.dart';
 import 'package:flutter_demo/ui/pages/samples/samples_page.dart';
-import 'package:flutter_demo/ui/pages/category/category_page.dart';
 import 'package:flutter_demo/ui/pages/webview/webview_page.dart';
 import 'package:flutter_demo/ui/pages/settings/settings_page.dart';
 
@@ -36,7 +36,7 @@ List<Map<String, Object>> tabsWithWidget = [
   },
   {
     "title": categoriesTitle,
-    "widget": (title) => CategoryPage(
+    "widget": (title) => CategoriesPage(
           headerTitle: title,
         )
   },
