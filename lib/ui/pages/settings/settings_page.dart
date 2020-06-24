@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/ui/widgets/settings_item.dart';
 
 import 'package:flutter_demo/common/mock/settings.dart';
+import 'package:flutter_demo/ui/widgets/settings_group.dart';
 
 class SettingsPage extends StatefulWidget {
   final String headerTitle;
@@ -25,12 +25,9 @@ class _SettingsPageState extends State<SettingsPage> {
         margin: EdgeInsets.all(6),
         child: ListView.separated(
           itemCount: settings.length,
-          itemBuilder: (context, index) => SettingsItem(
-            title: settings[index]["title"],
-            navigation: (settings[index]["navigation"] as Function),
-          ),
+          itemBuilder: (context, index) => SettingsGroup(settingsGroup: settings[index]),
           separatorBuilder: (context, index) => Container(
-            height: 10,
+            height: 20,
           ),
         ),
       ),

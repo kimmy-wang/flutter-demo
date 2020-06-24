@@ -26,7 +26,7 @@ class SettingsItem extends StatelessWidget {
       child: StoreConnector<AppState, ThemeMode>(
         converter: (store) => store.state.darkMode,
         builder: (context, darkMode) => Container(
-          height: 42,
+          height: 48,
           padding: EdgeInsets.only(top: 6, bottom: 6),
           decoration: BoxDecoration(
               color: DarkModeUtil.isDarkMode(context, darkMode)
