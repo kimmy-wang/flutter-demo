@@ -60,6 +60,7 @@ dependencies:
   pretty_dio_logger: ^1.1.1
   dio_http2_adapter: ^1.0.0
   giffy_dialog: ^1.7.0
+  fl_chart: ^0.10.0
 
 dev_dependencies:
   flutter_test:

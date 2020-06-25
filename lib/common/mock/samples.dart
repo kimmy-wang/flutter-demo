@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_demo/common/utils/navigator_util.dart';
 import 'package:flutter_demo/ui/pages/samples/animation.dart';
+import 'package:flutter_demo/ui/pages/samples/chart.dart';
 import 'package:flutter_demo/ui/pages/samples/contacts.dart';
 import 'package:flutter_demo/ui/pages/samples/editable_top_tab.dart';
 import 'package:flutter_demo/ui/pages/samples/gallery.dart';
@@ -63,6 +64,16 @@ List<Map<String, Object>> samples = [
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       Video(
+        headerTitle: title,
+      ),
+    )
+  },
+  {
+    "title": "Chart示例",
+    "description": "Chart示例",
+    "navigation": (BuildContext context, String title) => NavigatorUtil.push(
+      context,
+      Chart(
         headerTitle: title,
       ),
     )
