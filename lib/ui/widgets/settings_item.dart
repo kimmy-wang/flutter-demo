@@ -36,7 +36,7 @@ class SettingsItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(left: 6, bottom: 4),
+                margin: EdgeInsets.only(left: 6),
                 child: Text(
                   title,
                   style: TextStyle(

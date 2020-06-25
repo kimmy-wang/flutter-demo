@@ -21,14 +21,30 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text(widget.headerTitle ?? "Settings"),
       ),
-      body: Container(
-        margin: EdgeInsets.all(6),
-        child: ListView.separated(
-          itemCount: settings.length,
-          itemBuilder: (context, index) => SettingsGroup(settingsGroup: settings[index]),
-          separatorBuilder: (context, index) => Container(
-            height: 20,
+      body: ListView.separated(
+        itemCount: settings.length,
+        itemBuilder: (context, index) => Container(
+          margin: EdgeInsets.only(left: 6, right: 6),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 48,
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  settings[index]["title"],
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SettingsGroup(settingsGroup: settings[index]["list"])
+            ],
           ),
+        ),
+        separatorBuilder: (context, index) => Container(
+          height: 20,
         ),
       ),
     );

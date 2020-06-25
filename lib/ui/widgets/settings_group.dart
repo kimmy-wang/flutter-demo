@@ -24,6 +24,7 @@ class SettingsGroup extends StatelessWidget {
                 ? Colors.black87
                 : Colors.white),
         child: ListView.separated(
+          physics: new NeverScrollableScrollPhysics(),
           itemCount: settingsGroup.length,
           itemBuilder: (context, index) => SettingsItem(
             title: settingsGroup[index]["title"],
