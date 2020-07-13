@@ -19,8 +19,8 @@ import 'package:flutter_demo/ui/pages/samples/video.dart';
 
 List<Map<String, Object>> samples = [
   {
-    "title": "相册示例",
-    "description": "相册示例",
+    "title": "相册",
+    "description": "相册",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       Gallery(
@@ -29,8 +29,8 @@ List<Map<String, Object>> samples = [
     ),
   },
   {
-    "title": "扫码示例",
-    "description": "扫码示例",
+    "title": "扫码",
+    "description": "扫码",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       QrCode(
@@ -39,8 +39,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "生物认证示例",
-    "description": "生物认证示例",
+    "title": "生物认证",
+    "description": "生物认证",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       LocalAuth(
@@ -49,8 +49,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "近场通信示例",
-    "description": "近场通信示例",
+    "title": "近场通信",
+    "description": "近场通信",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       Nfc(
@@ -59,8 +59,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "视频示例",
-    "description": "视频示例",
+    "title": "视频",
+    "description": "视频",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       Video(
@@ -69,8 +69,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "Chart示例",
-    "description": "Chart示例",
+    "title": "Chart",
+    "description": "Chart",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       Chart(
@@ -79,8 +79,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "表格示例",
-    "description": "表格示例",
+    "title": "表格",
+    "description": "表格",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       TablePage(
@@ -89,8 +89,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "滑块视图示例",
-    "description": "滑块视图示例",
+    "title": "滑块视图",
+    "description": "滑块视图",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       FSwiper(
@@ -99,8 +99,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "顶部Tab页示例",
-    "description": "顶部Tab页示例",
+    "title": "顶部Tab页",
+    "description": "顶部Tab页",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       TopTab(
@@ -109,8 +109,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "可编辑顶部Tab页示例",
-    "description": "可编辑顶部Tab页示例",
+    "title": "可编辑顶部Tab页",
+    "description": "可编辑顶部Tab页",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       EditableTopTab(
@@ -119,8 +119,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "通讯录示例",
-    "description": "通讯录示例",
+    "title": "通讯录",
+    "description": "通讯录",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
           context,
           Contacts(
@@ -129,8 +129,8 @@ List<Map<String, Object>> samples = [
         )
   },
   {
-    "title": "通知推送示例",
-    "description": "通知推送示例",
+    "title": "通知推送",
+    "description": "通知推送",
     "hidden": true,
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
@@ -140,8 +140,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "分享示例",
-    "description": "分享示例",
+    "title": "分享",
+    "description": "分享",
     "hidden": true,
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
@@ -151,8 +151,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "动画示例",
-    "description": "动画示例",
+    "title": "动画",
+    "description": "动画",
     "hidden": true,
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
@@ -162,8 +162,8 @@ List<Map<String, Object>> samples = [
     )
   },
   {
-    "title": "地图示例",
-    "description": "地图示例",
+    "title": "地图",
+    "description": "地图",
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       MapPage(
