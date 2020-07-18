@@ -1,12 +1,12 @@
 {
   "@@last_modified": "2020-04-30T07:04:35.938228",
-  "title": "Flutter Sample",
+  "title": "Flutter Playground",
   "@title": {
     "description": "The title of app",
     "type": "text",
     "placeholders": {}
   },
-  "tabSamplesTitle": "Samples",
+  "tabSamplesTitle": "Playground",
   "@tabSamplesTitle": {
     "description": "Title for Samples tab of bottom navigation.",
     "type": "text",

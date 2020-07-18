@@ -44,7 +44,7 @@ class FlutterDemoLocalizations {
 
   String get title {
     return Intl.message(
-      'Flutter Sample',
+      'Flutter Playground',
       name: 'title',
       desc: r'The title of app',
       locale: _localeName,
@@ -53,7 +53,7 @@ class FlutterDemoLocalizations {
 
   String get tabSamplesTitle {
     return Intl.message(
-      'Samples',
+      'Playground',
       name: 'tabSamplesTitle',
       desc: r'Title for Samples tab of bottom navigation.',
       locale: _localeName,
