@@ -74,7 +74,7 @@ void showDemoAboutDialog(BuildContext context) {
   showAboutDialog(
     context: context,
     applicationVersion: 'Apri 2020',
-    applicationIcon: const ImageIcon(NetworkImage('https://apps.upcwangying.com/flutter/demo/logo512.png'), size: 40,),
+    applicationIcon: const ImageIcon(NetworkImage('https://public-cdn.com/flutter/Flutter Playground/logo512.png'), size: 40,),
 //    applicationIcon: const FlutterLogo(),
     applicationLegalese: '© 2020 Ying Wang',
     children: <Widget>[

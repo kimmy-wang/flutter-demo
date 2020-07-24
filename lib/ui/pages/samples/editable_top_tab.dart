@@ -99,7 +99,7 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+                        'https://public-cdn.com/flutter/Flutter Playground/assets/bg.jpeg',
                     fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
@@ -114,7 +114,7 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://apps.upcwangying.com/flutter/demo/assets/bg0.jpeg',
+                        'https://public-cdn.com/flutter/Flutter Playground/assets/bg0.jpeg',
                     fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
@@ -129,7 +129,7 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://apps.upcwangying.com/flutter/demo/assets/bg1.jpeg',
+                        'https://public-cdn.com/flutter/Flutter Playground/assets/bg1.jpeg',
                     fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
@@ -144,7 +144,7 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://apps.upcwangying.com/flutter/demo/assets/bg2.jpeg',
+                        'https://public-cdn.com/flutter/Flutter Playground/assets/bg2.jpeg',
                     fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
@@ -159,7 +159,7 @@ class _EditableTopTabState extends State<EditableTopTab>
                 Container(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://apps.upcwangying.com/flutter/demo/assets/bg.jpeg',
+                        'https://public-cdn.com/flutter/Flutter Playground/assets/bg.jpeg',
                     fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: Container(
