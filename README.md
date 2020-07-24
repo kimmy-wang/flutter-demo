@@ -2,6 +2,8 @@
 
 A new Flutter application.
 
+[Live Video](https://public-cdn.com/flutter/Flutter%20Playground/1.0.0/app-review.mp4)
+
 ## Getting Started
 
 ## Instructions to get to a working l10n state
