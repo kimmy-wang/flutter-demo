@@ -4,46 +4,10 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<amap_all_fluttify/AmapAllFluttifyPlugin.h>)
-#import <amap_all_fluttify/AmapAllFluttifyPlugin.h>
-#else
-@import amap_all_fluttify;
-#endif
-
-#if __has_include(<amap_core_fluttify/AmapCoreFluttifyPlugin.h>)
-#import <amap_core_fluttify/AmapCoreFluttifyPlugin.h>
-#else
-@import amap_core_fluttify;
-#endif
-
-#if __has_include(<amap_location_fluttify/AmapLocationFluttifyPlugin.h>)
-#import <amap_location_fluttify/AmapLocationFluttifyPlugin.h>
-#else
-@import amap_location_fluttify;
-#endif
-
-#if __has_include(<amap_map_fluttify/AmapMapFluttifyPlugin.h>)
-#import <amap_map_fluttify/AmapMapFluttifyPlugin.h>
-#else
-@import amap_map_fluttify;
-#endif
-
-#if __has_include(<amap_search_fluttify/AmapSearchFluttifyPlugin.h>)
-#import <amap_search_fluttify/AmapSearchFluttifyPlugin.h>
-#else
-@import amap_search_fluttify;
-#endif
-
 #if __has_include(<flutter_lottie/FlutterLottiePlugin.h>)
 #import <flutter_lottie/FlutterLottiePlugin.h>
 #else
 @import flutter_lottie;
-#endif
-
-#if __has_include(<foundation_fluttify/FoundationFluttifyPlugin.h>)
-#import <foundation_fluttify/FoundationFluttifyPlugin.h>
-#else
-@import foundation_fluttify;
 #endif
 
 #if __has_include(<image_picker/FLTImagePickerPlugin.h>)
@@ -115,13 +79,7 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [AmapAllFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapAllFluttifyPlugin"]];
-  [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
-  [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
-  [AmapMapFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapMapFluttifyPlugin"]];
-  [AmapSearchFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapSearchFluttifyPlugin"]];
   [FlutterLottiePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterLottiePlugin"]];
-  [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTLocalAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTLocalAuthPlugin"]];
   [NfcInFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"NfcInFlutterPlugin"]];

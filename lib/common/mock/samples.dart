@@ -7,7 +7,6 @@ import 'package:flutter_demo/ui/pages/samples/contacts.dart';
 import 'package:flutter_demo/ui/pages/samples/editable_top_tab.dart';
 import 'package:flutter_demo/ui/pages/samples/gallery.dart';
 import 'package:flutter_demo/ui/pages/samples/local_auth.dart';
-import 'package:flutter_demo/ui/pages/samples/map.dart';
 import 'package:flutter_demo/ui/pages/samples/nfc.dart';
 import 'package:flutter_demo/ui/pages/samples/notification.dart';
 import 'package:flutter_demo/ui/pages/samples/share.dart';
@@ -157,16 +156,6 @@ List<Map<String, Object>> samples = [
     "navigation": (BuildContext context, String title) => NavigatorUtil.push(
       context,
       AnimationPage(
-        headerTitle: title,
-      ),
-    )
-  },
-  {
-    "title": "地图",
-    "description": "地图",
-    "navigation": (BuildContext context, String title) => NavigatorUtil.push(
-      context,
-      MapPage(
         headerTitle: title,
       ),
     )

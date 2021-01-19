@@ -7,7 +7,6 @@ import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_persist/redux_persist.dart';
 import 'package:redux_persist_flutter/redux_persist_flutter.dart';
-import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
 import 'package:flutter_demo/common/model/app_state.dart';
@@ -18,10 +17,6 @@ import 'package:flutter_demo/ui/pages/app_intro_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AmapService.init(
-    iosKey: FlutterDemoConfig.AMAP_CLIENT_KEY_IOS,
-    androidKey: FlutterDemoConfig.AMAP_CLIENT_KEY_ANDROID,
-  );
   // Create Persistor
   final persistor = Persistor<AppState>(
     storage: FlutterStorage(),

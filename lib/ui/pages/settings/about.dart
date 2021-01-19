@@ -3,7 +3,6 @@ import 'dart:developer' show Timeline, Flow;
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/scheduler.dart';
 
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter/gestures.dart';
