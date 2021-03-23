@@ -26,7 +26,7 @@ class _FAppBarState extends State<FAppBar> {
     double horizontal = MediaQuery.of(context).viewPadding.top;
     ThemeData _theme = Theme.of(context);
     AppBarTheme _appBarTheme = AppBarTheme.of(context);
-    final ScaffoldState scaffold = Scaffold.of(context, nullOk: true);
+    final ScaffoldState scaffold = Scaffold.of(context);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
 
     final bool hasDrawer = scaffold?.hasDrawer ?? false;

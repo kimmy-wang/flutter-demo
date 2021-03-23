@@ -16,12 +16,6 @@
 @import image_picker;
 #endif
 
-#if __has_include(<local_auth/FLTLocalAuthPlugin.h>)
-#import <local_auth/FLTLocalAuthPlugin.h>
-#else
-@import local_auth;
-#endif
-
 #if __has_include(<nfc_in_flutter/NfcInFlutterPlugin.h>)
 #import <nfc_in_flutter/NfcInFlutterPlugin.h>
 #else
@@ -81,7 +75,6 @@
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [FlutterLottiePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterLottiePlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
-  [FLTLocalAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTLocalAuthPlugin"]];
   [NfcInFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"NfcInFlutterPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
   [QrcodePlugin registerWithRegistrar:[registry registrarForPlugin:@"QrcodePlugin"]];

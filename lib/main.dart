@@ -7,10 +7,8 @@ import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_persist/redux_persist.dart';
 import 'package:redux_persist_flutter/redux_persist_flutter.dart';
-import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 
 import 'package:flutter_demo/common/model/app_state.dart';
-import 'package:flutter_demo/common/config/flutter_demo_config.dart';
 import 'package:flutter_demo/l10n/flutter_demo_localizations.dart';
 import 'package:flutter_demo/ui/store/reducers/app_state_reducer.dart';
 import 'package:flutter_demo/ui/pages/app_intro_screen.dart';
@@ -56,10 +54,7 @@ class _FlutterDemoAppState extends State<FlutterDemoApp> {
         builder: (context, darkMode) => StoreConnector<AppState, String>(
           converter: (store) => store.state.localeName,
           builder: (context, localeName) => MaterialApp(
-            localizationsDelegates: [
-              ...FlutterDemoLocalizations.localizationsDelegates,
-              LocaleNamesLocalizationsDelegate()
-            ],
+            localizationsDelegates: FlutterDemoLocalizations.localizationsDelegates,
             supportedLocales: FlutterDemoLocalizations.supportedLocales,
             theme: ThemeData.light(),
             darkTheme: ThemeData.dark(),
